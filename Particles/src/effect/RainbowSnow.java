@@ -7,11 +7,12 @@ import particle.Particle;
 /**
  * Represents rainbow snow fall.
  * @author Valkryst
- * --- Last Edit 19-Mar-2014
+ * --- Last Edit 21-Mar-2014
  */
 public class RainbowSnow extends Effect {
 	/** The length (x-axis) of the screen. */
 	private final double SCREEN_LENGTH;
+	private final double COLOR_CHANGE_CONSTANT = 0.25;
 	private double red = 255, green = 0, blue = 0;
 	private boolean isRed = false, isGreen = true, isBlue = false;
 	
@@ -35,9 +36,8 @@ public class RainbowSnow extends Effect {
 		}
 		
 		if(isRed) {
-			if(blue > 0) {
-				blue -= 0.25;
-			}
+			blue -= (blue > 0 ? COLOR_CHANGE_CONSTANT : 0);
+
 			if(red < 255) {
 				red += 0.25;
 			} else {
@@ -45,9 +45,8 @@ public class RainbowSnow extends Effect {
 				isGreen = true;
 			}
 		} else if(isGreen) {
-			if(red > 0) {
-				red -= 0.25;
-			}
+			red -= (red > 0 ? COLOR_CHANGE_CONSTANT : 0);
+			
 			if(green < 255) {
 				green += 0.25;
 			} else {
@@ -55,9 +54,8 @@ public class RainbowSnow extends Effect {
 				isBlue = true;
 			}
 		} else if(isBlue) {
-			if(green > 0) {
-				green -= 0.25;
-			}
+			green -= (green > 0 ? COLOR_CHANGE_CONSTANT : 0);
+			
 			if(blue < 255) {
 				blue += 0.25;
 			} else {
@@ -80,7 +78,6 @@ public class RainbowSnow extends Effect {
 	 * @param decayTimeIn The number of movements before the new Particle decays.
 	 */
 	public void newParticle(Color colorIn, int sizeIn, int decayTimeIn) {
-		double x = RANDOM.nextInt((int)SCREEN_LENGTH), y = super.ORIGIN_Y;
-		PARTICLES.add(new Particle(x, y, RANDOM.nextDouble() * (RANDOM.nextBoolean() ? -2 : 2), RANDOM.nextDouble() * 2.5, 0.0050 *(RANDOM.nextBoolean() ? -1 : 1), 0.0, sizeIn + RANDOM.nextInt(8), 150 + RANDOM.nextInt(800), colorIn));
+		PARTICLES.add(new Particle(RANDOM.nextInt((int)SCREEN_LENGTH), super.ORIGIN_Y, RANDOM.nextDouble() * (RANDOM.nextBoolean() ? -2 : 2), RANDOM.nextDouble() * 2.5, 0.0050 *(RANDOM.nextBoolean() ? -1 : 1), 0.0, sizeIn + RANDOM.nextInt(8), 150 + RANDOM.nextInt(800), colorIn));
 	}
 }
