@@ -77,7 +77,7 @@ public class RainbowSnow extends Effect {
 	 * @param sizeIn The size, in pixels^2, of the new Particle.
 	 * @param decayTimeIn The number of movements before the new Particle decays.
 	 */
-	public void newParticle(Color colorIn, int sizeIn, int decayTimeIn) {
-		PARTICLES.add(new Particle(RANDOM.nextInt((int)SCREEN_LENGTH), super.ORIGIN_Y, RANDOM.nextDouble() * (RANDOM.nextBoolean() ? -2 : 2), RANDOM.nextDouble() * 2.5, 0.0050 *(RANDOM.nextBoolean() ? -1 : 1), 0.0, sizeIn + RANDOM.nextInt(8), 150 + RANDOM.nextInt(800), colorIn));
+	public void newParticle(final Color COLOR, int SIZE, int LIFE) {
+		PARTICLES.add(new Particle(RANDOM.nextInt((int)SCREEN_LENGTH), super.ORIGIN_Y, RANDOM.nextDouble() * (RANDOM.nextBoolean() ? -2 : 2), RANDOM.nextDouble() * 2.5, 0.0050 *(RANDOM.nextBoolean() ? -1 : 1), 0.0, SIZE + RANDOM.nextInt(8), LIFE + RANDOM.nextInt(800), COLOR));
 	}
 }
