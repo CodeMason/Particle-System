@@ -7,7 +7,7 @@ import particle.Particle;
 /**
  * Represents a fire.
  * @author Valkryst
- * --- Last Edit 14-Mar-2014
+ * --- Last Edit 21-Mar-2014
  */
 public class Fire extends Effect {
 	private static final Color ONE = new Color(159, 70, 24, 100);
@@ -44,6 +44,11 @@ public class Fire extends Effect {
 		}
 	}
 	
+	/**
+	 * Creates a new Particle object.
+	 * @param SIZE The size, in pixels^2, of the new Particle.
+	 * @param LIFE The number of movements before the new Particle decays.
+	 */
 	public void newParticle(final Color COLOR, final int SIZE, final int LIFE, final int MAX_AXIS_MOVEMENT) {
 		double x = super.ORIGIN_X;
 		x += RANDOM.nextInt(MAX_AXIS_MOVEMENT) * (RANDOM.nextBoolean() ? -1 : 1);
