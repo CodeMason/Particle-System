@@ -7,7 +7,7 @@ import particle.Particle;
 /**
  * Represents snow fall.
  * @author Valkryst
- * --- Last Edit 14-Mar-2014
+ * --- Last Edit 21-Mar-2014
  */
 public class Snow extends Effect {
 	/** The length (x-axis) of the screen. */
@@ -42,11 +42,10 @@ public class Snow extends Effect {
 	
 	/**
 	 * Creates a new Particle object.
-	 * @param sizeIn The size, in pixels^2, of the new Particle.
-	 * @param decayTimeIn The number of movements before the new Particle decays.
+	 * @param SIZE The size, in pixels^2, of the new Particle.
+	 * @param LIFE The number of movements before the new Particle decays.
 	 */
-	public void newParticle(int sizeIn, int decayTimeIn) {
-		double x = RANDOM.nextInt((int)SCREEN_LENGTH), y = super.ORIGIN_Y;
-		PARTICLES.add(new Particle(x, y, RANDOM.nextDouble() * (RANDOM.nextBoolean() ? -2 : 2), RANDOM.nextDouble() * 2.5, -0.0075, 0.0, sizeIn, 150 + RANDOM.nextInt(800), Color.WHITE));
+	public void newParticle(final int SIZE, final int LIFE) {
+		PARTICLES.add(new Particle(RANDOM.nextInt((int)SCREEN_LENGTH), super.ORIGIN_Y, RANDOM.nextDouble() * (RANDOM.nextBoolean() ? -2 : 2), RANDOM.nextDouble() * 2.5, -0.0075, 0.0, SIZE, LIFE + RANDOM.nextInt(800), Color.WHITE));
 	}
 }
