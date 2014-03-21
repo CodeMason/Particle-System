@@ -6,29 +6,29 @@ import java.awt.Graphics;
 public class Particle {
 	private double x, y;
 	private double dx, dy; // Change in x and y.
-	private double gravityX, gravityY; // The left/right and up/down gravity pull on the particle.
-	private int size;
+	private final double GRAVITY_X, GRAVITY_Y; // The left/right and up/down gravity pull on the particle.
+	private final int size;
 	private double currentLife, totalLife;
 	private Color color;
 	
-	public Particle(double xIn, double yIn, double dxIn, double dyIn, double gravityXIn, double gravityYIn, int sizeIn, double lifeIn, Color colorIn) {
-		x = xIn;
-		y = yIn;
-		dx = dxIn;
-		dy = dyIn;
-		gravityX = gravityXIn;
-		gravityY = gravityYIn;
-		size = sizeIn;
-		currentLife = lifeIn;
-		totalLife = lifeIn;
-		color = colorIn;
+	public Particle(final double X, final double Y, final double DX, final double DY, final double GRAVITY_X, final double GRAVITY_Y, final int SIZE, final double LIFE, final Color COLOR) {
+		x = X;
+		y = Y;
+		dx = DX;
+		dy = DY;
+		this.GRAVITY_X = GRAVITY_X;
+		this.GRAVITY_Y = GRAVITY_Y;
+		size = SIZE;
+		currentLife = LIFE;
+		totalLife = LIFE;
+		color = COLOR;
 	}
 	
 	public boolean update() {
 		x += dx;
 		y += dy;
-		dx += gravityX;
-		dy += gravityY;
+		dx += GRAVITY_X;
+		dy += GRAVITY_Y;
 		currentLife--;
 		color = new Color(color.getRed(), color.getGreen(), color.getBlue(), (int)((currentLife/totalLife)*100));
 		return (currentLife <= 0 ? true : false);
