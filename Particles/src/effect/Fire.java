@@ -44,9 +44,9 @@ public class Fire extends Effect {
 		}
 	}
 	
-	public void newParticle(Color colorIn, int sizeIn, int decayTimeIn, int maximumXAxisMovement) {
-		double x = super.ORIGIN_X, y = super.ORIGIN_Y;
-		x += RANDOM.nextInt(maximumXAxisMovement) * (RANDOM.nextBoolean() ? -1 : 1);
-		PARTICLES.add(new Particle(x, y, RANDOM.nextDouble() / 4, RANDOM.nextDouble() * -1, 0.0, 0.0015 * (RANDOM.nextBoolean() ? 1 : -1), sizeIn + RANDOM.nextInt(10), decayTimeIn, colorIn));
+	public void newParticle(final Color COLOR, final int SIZE, final int LIFE, final int MAX_AXIS_MOVEMENT) {
+		double x = super.ORIGIN_X;
+		x += RANDOM.nextInt(MAX_AXIS_MOVEMENT) * (RANDOM.nextBoolean() ? -1 : 1);
+		PARTICLES.add(new Particle(x, super.ORIGIN_Y, RANDOM.nextDouble() / 4, RANDOM.nextDouble() * -1, 0.0, 0.0015 * (RANDOM.nextBoolean() ? 1 : -1), SIZE + RANDOM.nextInt(10), LIFE, COLOR));
 	}
 }
