@@ -36,7 +36,7 @@ public class RainbowSnow extends Effect {
 		}
 		
 		if(isRed) {
-			blue -= (blue > 0 ? COLOR_CHANGE_CONSTANT : 0);
+			if(blue > 0) { blue -= COLOR_CHANGE_CONSTANT; }
 
 			if(red < 255) {
 				red += 0.25;
@@ -45,7 +45,7 @@ public class RainbowSnow extends Effect {
 				isGreen = true;
 			}
 		} else if(isGreen) {
-			red -= (red > 0 ? COLOR_CHANGE_CONSTANT : 0);
+			if(red > 0) { red -= COLOR_CHANGE_CONSTANT; }
 			
 			if(green < 255) {
 				green += 0.25;
@@ -54,7 +54,7 @@ public class RainbowSnow extends Effect {
 				isBlue = true;
 			}
 		} else if(isBlue) {
-			green -= (green > 0 ? COLOR_CHANGE_CONSTANT : 0);
+			if(green > 0) { green -= COLOR_CHANGE_CONSTANT; }
 			
 			if(blue < 255) {
 				blue += 0.25;
