@@ -1,7 +1,9 @@
 package particle;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 
 /**
  * Represents a particle in 2D space.
@@ -9,6 +11,7 @@ import java.awt.Graphics;
  * --- Last Edit 21-Mar-2014
  */
 public class Particle {
+	private final static Dimension SCREEN_DIMENSIONS = Toolkit.getDefaultToolkit().getScreenSize();
 	/** The location of the particle on the X-axis. */
 	private double x;
 	/** The location of the particle on the Y-axis. */
@@ -61,13 +64,17 @@ public class Particle {
 	 * @return Whether the particle is 'dead' or not.
 	 */
 	public boolean update() {
-		x += dx;
-		y += dy;
-		dx += GRAVITY_X;
-		dy += GRAVITY_Y;
-		currentLife--;
-		color = new Color(color.getRed(), color.getGreen(), color.getBlue(), (int)((currentLife/TOTAL_LIFE)*100));
-		return (currentLife <= 0 ? true : false);
+		if(x > SCREEN_DIMENSIONS.width + 32 || x < -32 || y > SCREEN_DIMENSIONS.height + 32) {
+			return true;
+		} else {
+			x += dx;
+			y += dy;
+			dx += GRAVITY_X;
+			dy += GRAVITY_Y;
+			currentLife--;
+			color = new Color(color.getRed(), color.getGreen(), color.getBlue(), (int)((currentLife/TOTAL_LIFE)*100));
+			return (currentLife <= 0 ? true : false);
+		}
 	}
 	
 	/**
