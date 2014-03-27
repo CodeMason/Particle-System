@@ -7,12 +7,12 @@ import particle.Particle;
 /**
  * Represents rainbow snow fall.
  * @author Valkryst
- * --- Last Edit 21-Mar-2014
+ * --- Last Edit 27-Mar-2014
  */
 public class RainbowSnow extends Effect {
 	/** The length (x-axis) of the screen. */
 	private final double SCREEN_LENGTH;
-	private final double COLOR_CHANGE_CONSTANT = 0.25;
+	private final double COLOR_CHANGE_CONSTANT = 0.125;
 	private double red = 255, green = 0, blue = 0;
 	private boolean isRed = false, isGreen = true, isBlue = false;
 	
@@ -28,9 +28,11 @@ public class RainbowSnow extends Effect {
 	 * Updates the snow.
 	 */
 	public void update() {
+		Color c = new Color((int)red, (int)green, (int)blue, 100);
 		if(counter == 10) {
-			for(int i=0;i<RANDOM.nextInt(900) + 60;i++) { newParticle(new Color((int)red, (int)green, (int)blue, 100), RANDOM.nextInt(8), 40); }
+			for(int i=0;i<RANDOM.nextInt(1800) + 120;i++) { newParticle(c, RANDOM.nextInt(8), 40); }
 			counter = 0;
+			System.out.println(red + " " + green + " " + blue);
 		} else {
 			counter++;
 		}
@@ -39,8 +41,8 @@ public class RainbowSnow extends Effect {
 			if(blue > 0) { blue -= COLOR_CHANGE_CONSTANT; }
 
 			if(red < 255) {
-				red += 0.25;
-			} else {
+				red += COLOR_CHANGE_CONSTANT;
+			} else if(red == 255 && blue == 0) {
 				isRed = false;
 				isGreen = true;
 			}
@@ -48,8 +50,8 @@ public class RainbowSnow extends Effect {
 			if(red > 0) { red -= COLOR_CHANGE_CONSTANT; }
 			
 			if(green < 255) {
-				green += 0.25;
-			} else {
+				green += COLOR_CHANGE_CONSTANT;
+			} else if(green == 255 && red == 0) {
 				isGreen = false;
 				isBlue = true;
 			}
@@ -57,8 +59,8 @@ public class RainbowSnow extends Effect {
 			if(green > 0) { green -= COLOR_CHANGE_CONSTANT; }
 			
 			if(blue < 255) {
-				blue += 0.25;
-			} else {
+				blue += COLOR_CHANGE_CONSTANT;
+			} else if(blue == 255 && green == 0) {
 				isBlue = false;
 				isRed = true;
 			}
