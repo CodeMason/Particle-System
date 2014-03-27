@@ -146,12 +146,11 @@ public class Screen extends Canvas implements Runnable {
         Graphics g = BS.getDrawGraphics();
         ((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.clearRect(0, 0, getWidth(), getHeight());
-        
-        for(int i=0;i<effect.length;i++) {
-			((RainbowSnow)effect[i]).render(g, effect[i].getIsOval());
-		}
+
+        for(int i=0;i<effect.length;i++) { ((RainbowSnow)effect[i]).render(g, effect[i].getIsOval()); }
         
         g.dispose();
+        g.finalize();
 		BS.show();
 	}
 }

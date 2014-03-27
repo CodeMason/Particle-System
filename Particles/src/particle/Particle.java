@@ -77,12 +77,11 @@ public class Particle {
 	 */
 	public void render(final Graphics G, final boolean IS_OVAL) {
 		G.setColor(color);
-		
+
 		if(IS_OVAL) {
 			G.fillOval((int)x-(SIZE / 2), (int)y-(SIZE / 2), SIZE, SIZE); //x-(size/2) & y-(size/2) make sure the particle is rendered at (x, y).
 		} else {
 			G.fillRect((int)x-(SIZE / 2), (int)y-(SIZE / 2), SIZE, SIZE); //x-(size/2) & y-(size/2) make sure the particle is rendered at (x, y).
 		}
-
 	}
 }
