@@ -32,7 +32,6 @@ public class RainbowSnow extends Effect {
 		if(counter == 10) {
 			for(int i=0;i<RANDOM.nextInt(1800) + 120;i++) { newParticle(c, RANDOM.nextInt(8), 40); }
 			counter = 0;
-			System.out.println(red + " " + green + " " + blue);
 		} else {
 			counter++;
 		}
