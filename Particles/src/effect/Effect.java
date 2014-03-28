@@ -1,6 +1,8 @@
 package effect;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -37,6 +39,7 @@ public class Effect {
 	 * @param g Graphics object with which to draw.
 	 */
 	public void render(final Graphics G, final boolean IS_OVAL) {
+		((Graphics2D)G).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		iterator = PARTICLES.iterator();
 		while(iterator.hasNext()) {
 			iterator.next().render(G, IS_OVAL);

@@ -88,7 +88,6 @@ public class Particle {
 		G.setColor(color);
 
 		if(IS_OVAL) {
-			((Graphics2D)G).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			G.fillOval((int)x-(SIZE / 2), (int)y-(SIZE / 2), SIZE, SIZE); //x-(size/2) & y-(size/2) make sure the particle is rendered at (x, y).
 		} else {
 			G.fillRect((int)x-(SIZE / 2), (int)y-(SIZE / 2), SIZE, SIZE); //x-(size/2) & y-(size/2) make sure the particle is rendered at (x, y).

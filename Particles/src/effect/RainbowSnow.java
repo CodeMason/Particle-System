@@ -20,7 +20,7 @@ public class RainbowSnow extends Effect {
 	 * Constructs a new Snow object.
 	 */
 	public RainbowSnow(final double ORIGIN_X, final double ORIGIN_Y, final double SCREEN_LENGTH) {
-		super(ORIGIN_X, ORIGIN_Y - 50, false);
+		super(ORIGIN_X, ORIGIN_Y - 50, true);
 		this.SCREEN_LENGTH = SCREEN_LENGTH;
 	}
 	
