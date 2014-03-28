@@ -24,7 +24,7 @@ import effect.RainbowSnow;
  * --- Last Edit 14-Jan-2014
  */
 public class Screen extends Canvas implements Runnable {
-	private static final long serialVersionUID = 4532836895892068039L;
+	private static final long serialVersionUID = 1L;
 	
 	private final JFrame frame;
 	private Thread gameThread;
@@ -40,7 +40,7 @@ public class Screen extends Canvas implements Runnable {
 	public Screen() {
 		frame = new JFrame();
 		frame.setTitle("Particle Test");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.setExtendedState(Frame.MAXIMIZED_BOTH);
 		frame.setUndecorated(true);  
 		frame.setResizable(false);
@@ -144,7 +144,6 @@ public class Screen extends Canvas implements Runnable {
 		
         // Creates the graphics object and then clears the screen.
         Graphics g = BS.getDrawGraphics();
-        ((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.clearRect(0, 0, getWidth(), getHeight());
 
         for(int i=0;i<effect.length;i++) { ((RainbowSnow)effect[i]).render(g, effect[i].getIsOval()); }
