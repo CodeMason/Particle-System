@@ -47,7 +47,7 @@ public class RainbowSnow extends Effect {
 			}
 		} else if(isGreen) {
 			if(red > 0) { red -= COLOR_CHANGE_CONSTANT; }
-			
+
 			if(green < 255) {
 				green += COLOR_CHANGE_CONSTANT;
 			} else if(green == 255 && red == 0) {
@@ -56,7 +56,7 @@ public class RainbowSnow extends Effect {
 			}
 		} else if(isBlue) {
 			if(green > 0) { green -= COLOR_CHANGE_CONSTANT; }
-			
+
 			if(blue < 255) {
 				blue += COLOR_CHANGE_CONSTANT;
 			} else if(blue == 255 && green == 0) {
@@ -75,8 +75,9 @@ public class RainbowSnow extends Effect {
 	
 	/**
 	 * Creates a new Particle object.
-	 * @param sizeIn The size, in pixels^2, of the new Particle.
-	 * @param decayTimeIn The number of movements before the new Particle decays.
+     * @param COLOR The color of the new particle
+	 * @param SIZE The size, in pixels^2, of the new Particle.
+	 * @param LIFE The number of movements before the new Particle decays.
 	 */
 	public void newParticle(final Color COLOR, int SIZE, int LIFE) {
 		PARTICLES.add(new Particle(RANDOM.nextInt((int)SCREEN_LENGTH), super.ORIGIN_Y, RANDOM.nextDouble() * (RANDOM.nextBoolean() ? -2 : 2), RANDOM.nextDouble() * 2.5, 0.0050 *(RANDOM.nextBoolean() ? -1 : 1), 0.0, SIZE + RANDOM.nextInt(8), LIFE + RANDOM.nextInt(800), COLOR));
