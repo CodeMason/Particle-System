@@ -19,7 +19,7 @@ import effect.RainbowSnow;
 /**
  * Represents a screen on which to draw.
  * @author Valkryst
- * --- Last Edit 14-Jan-2014
+ * --- Last Edit 9-May-2014
  */
 public class Screen extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
