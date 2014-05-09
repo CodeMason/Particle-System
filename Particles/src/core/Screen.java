@@ -117,11 +117,11 @@ public class Screen extends Canvas implements Runnable {
 	// When called this updates all of the game's logic.
 	public void updateLogic(double delta) {
 		//((Snow)effect).update();
-		for(int i=0;i<effect.length;i++) {
-			((RainbowSnow)effect[i]).update();
+		for(Effect e : effect) {
+            ((RainbowSnow)e).update();
 		}
 		
-		if(KEY.isKeyPressed(KeyEvent.VK_ESCAPE)) {
+		if(KEY.isKeyPressed(KeyEvent.VK_ESCAPE) || KEY.isKeyPressed(KeyEvent.VK_ALT) && KEY.isKeyPressed(KeyEvent.VK_F4)) {
 			isGameRunning = false;
 			System.exit(0);
 		}
@@ -144,7 +144,7 @@ public class Screen extends Canvas implements Runnable {
         Graphics g = BS.getDrawGraphics();
         g.clearRect(0, 0, getWidth(), getHeight());
 
-        for(int i=0;i<effect.length;i++) { ((RainbowSnow)effect[i]).render(g, effect[i].getIsOval()); }
+        for(Effect e: effect) { ((RainbowSnow)e).render(g, e.getIsOval()); }
         
         g.dispose();
         g.finalize();
