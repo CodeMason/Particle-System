@@ -3,8 +3,6 @@ package particle;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.Toolkit;
 
 /**
@@ -75,7 +73,7 @@ public class Particle {
 			dy += GRAVITY_Y;
 			currentLife--;
 			color = new Color(color.getRed(), color.getGreen(), color.getBlue(), (int)((currentLife/TOTAL_LIFE)*100));
-			return (currentLife <= 0 ? true : false);
+			return currentLife <= 0;
 		}
 	}
 	
