@@ -7,7 +7,7 @@ import particle.Particle;
 /**
  * Represents snow fall.
  * @author Valkryst
- * --- Last Edit 21-Mar-2014
+ * --- Last Edit 9-May-2014
  */
 public class Snow extends Effect {
 	/** The length (x-axis) of the screen. */

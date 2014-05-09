@@ -7,7 +7,7 @@ import particle.Particle;
 /**
  * Represents rainbow snow fall.
  * @author Valkryst
- * --- Last Edit 27-Mar-2014
+ * --- Last Edit 9-May-2014
  */
 public class RainbowSnow extends Effect {
 	/** The length (x-axis) of the screen. */
@@ -35,7 +35,7 @@ public class RainbowSnow extends Effect {
 		} else {
 			counter++;
 		}
-		
+
 		if(isRed) {
 			if(blue > 0) { blue -= COLOR_CHANGE_CONSTANT; }
 

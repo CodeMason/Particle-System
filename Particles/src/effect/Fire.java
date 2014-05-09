@@ -7,7 +7,7 @@ import particle.Particle;
 /**
  * Represents a fire.
  * @author Valkryst
- * --- Last Edit 21-Mar-2014
+ * --- Last Edit 9-May-2014
  */
 public class Fire extends Effect {
 	private static final Color ONE = new Color(159, 70, 24, 100);
