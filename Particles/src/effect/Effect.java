@@ -36,7 +36,7 @@ public class Effect {
 	
 	/**
 	 *  Renders the snow to the screen.
-	 * @param g Graphics object with which to draw.
+	 * @param G Graphics object with which to draw.
 	 */
 	public void render(final Graphics G, final boolean IS_OVAL) {
 		((Graphics2D)G).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
