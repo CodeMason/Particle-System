@@ -23,11 +23,10 @@ import effect.RainbowSnow;
  */
 public class Screen extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
-	
-	private final JFrame frame;
-	private Thread gameThread;
+
+    private Thread gameThread;
 	private boolean isGameRunning = true;
-	
+
 	private BufferStrategy BS = getBufferStrategy();
 	private Input_Keyboard KEY = new Input_Keyboard();
 	
@@ -36,7 +35,7 @@ public class Screen extends Canvas implements Runnable {
 	// End Testing Stuff.
 	
 	public Screen() {
-		frame = new JFrame();
+        JFrame frame = new JFrame();
 		frame.setTitle("Particle Test");
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.setExtendedState(Frame.MAXIMIZED_BOTH);
@@ -147,7 +146,6 @@ public class Screen extends Canvas implements Runnable {
         for(Effect e: effect) { ((RainbowSnow)e).render(g, e.getIsOval()); }
         
         g.dispose();
-        g.finalize();
 		BS.show();
 	}
 }
