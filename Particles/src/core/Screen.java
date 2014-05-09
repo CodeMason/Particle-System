@@ -114,7 +114,8 @@ public class Screen extends Canvas implements Runnable {
 	}
 
 	// When called this updates all of the game's logic.
-	public void updateLogic(double delta) {
+    // Still not entirely sure what to use delta for.
+	public void updateLogic(final double DELTA) {
 		//((Snow)effect).update();
 		for(Effect e : effect) {
             ((RainbowSnow)e).update();
