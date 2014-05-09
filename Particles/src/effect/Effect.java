@@ -10,6 +10,11 @@ import java.util.Random;
 
 import particle.Particle;
 
+/**
+ * Represents a particle effect.
+ * @author Valkryst
+ * --- Last Edit 9-May-2014
+ */
 public class Effect {
 	protected final static Random RANDOM = new Random();
 	/** A collection of particles that make up the snow.*/
