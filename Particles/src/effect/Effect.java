@@ -16,6 +16,7 @@ import particle.Particle;
  * --- Last Edit 10-May-2014
  */
 public class Effect {
+    /** An instance of this class is used to generate a stream of pseudorandom numbers. */
 	protected final static Random RANDOM = new Random();
 	/** A collection of particles that make up the snow.*/
 	protected final List<Particle> PARTICLES = new ArrayList<Particle>();
