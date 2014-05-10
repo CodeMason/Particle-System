@@ -74,12 +74,12 @@ public class Screen extends Canvas implements Runnable {
 		final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;   
 		double delta = 0;
 		
-		// Keep looping until the game ends.
+		// Keep looping until the program ends.
 		while(isProgramRunning) {
 				long now = System.nanoTime();
 				long updateLength = now - lastLoopTime;
 				lastLoopTime = now;
-			    delta += updateLength / ((double)OPTIMAL_TIME); // Work out how long its been since the last update. This will be used to calculate how far the entities should move this loop.
+			    delta += updateLength / ((double)OPTIMAL_TIME); // Work out how long its been since the last update.
 			    
 			    //Update the game's logic and then render the screen.
 			    while(delta >= 1) {
