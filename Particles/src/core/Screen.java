@@ -44,13 +44,14 @@ public class Screen extends Canvas implements Runnable {
 		frame.setLocationRelativeTo(null);
 		frame.requestFocus();
 		
-		setSize(new Dimension(frame.getWidth(), frame.getHeight()));
-		setFocusable(true);
-		setVisible(true);
+		this.setSize(new Dimension(frame.getWidth(), frame.getHeight()));
+        this.setFocusable(true);
+        this.setVisible(true);
+        this.setBackground(Color.black);
+        this.addKeyListener(KEY);
 		
 		frame.add(this);
 		frame.setVisible(true);
-		this.addKeyListener(KEY);
 		
 		//effect = new Snow(0.0, 0.0, frame.getWidth());
 		for(int i=0;i<effect.length;i++) {
@@ -99,7 +100,6 @@ public class Screen extends Canvas implements Runnable {
 	}
 	
 	public synchronized void start() {
-		setBackground(Color.black);
 		isGameRunning = true;
 		gameThread = new Thread(this, "Display");
 		gameThread.start();
