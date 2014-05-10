@@ -7,14 +7,14 @@ import particle.Particle;
 /**
  * Represents rainbow snow fall.
  * @author Valkryst
- * --- Last Edit 9-May-2014
+ * --- Last Edit 10-May-2014
  */
 public class RainbowSnow extends Effect {
 	/** The length (x-axis) of the screen. */
 	private final double SCREEN_LENGTH;
 	private final double COLOR_CHANGE_CONSTANT = 0.125;
 	private double red = 255, green = 0, blue = 0;
-	private boolean isRed = false, isGreen = true, isBlue = false;
+	private boolean changingToRed = false, changingToGreen = true, changingToBlue = false;
 	
 	/**
 	 * Constructs a new Snow object.
@@ -49,32 +49,32 @@ public class RainbowSnow extends Effect {
 			counter++;
 		}
 
-		if(isRed) {
+		if(changingToRed) {
 			if(blue > 0) { blue -= COLOR_CHANGE_CONSTANT; }
 
 			if(red < 255) {
 				red += COLOR_CHANGE_CONSTANT;
 			} else if(red == 255 && blue == 0) {
-				isRed = false;
-				isGreen = true;
+                changingToRed = false;
+                changingToGreen = true;
 			}
-		} else if(isGreen) {
+		} else if(changingToGreen) {
 			if(red > 0) { red -= COLOR_CHANGE_CONSTANT; }
 
 			if(green < 255) {
 				green += COLOR_CHANGE_CONSTANT;
 			} else if(green == 255 && red == 0) {
-				isGreen = false;
-				isBlue = true;
+                changingToGreen = false;
+                changingToBlue = true;
 			}
-		} else if(isBlue) {
+		} else if(changingToBlue) {
 			if(green > 0) { green -= COLOR_CHANGE_CONSTANT; }
 
 			if(blue < 255) {
 				blue += COLOR_CHANGE_CONSTANT;
 			} else if(blue == 255 && green == 0) {
-				isBlue = false;
-				isRed = true;
+                changingToBlue = false;
+                changingToRed = true;
 			}
 		}
 
