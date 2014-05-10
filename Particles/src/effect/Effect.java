@@ -13,7 +13,7 @@ import particle.Particle;
 /**
  * Represents a particle effect.
  * @author Valkryst
- * --- Last Edit 9-May-2014
+ * --- Last Edit 10-May-2014
  */
 public class Effect {
 	protected final static Random RANDOM = new Random();
@@ -25,9 +25,17 @@ public class Effect {
 	protected final double ORIGIN_Y;
 	/** Whether or not to render the particles as ovals. If not then render as squares. Ovals are extremely CPU intensive for large effects*/
 	protected final boolean IS_OVAL;
+    /** Used to iterate over the list which contains the particles. */
 	protected Iterator<Particle> iterator;
+    /** Counts the number of update calls since the last update. */
 	protected int counter = 0;
-	
+
+    /**
+     * Basic constructor for an effect.
+     * @param ORIGIN_X The origin, on the X-axis, of the effect.
+     * @param ORIGIN_Y The origin, on the Y-axis, of the effect.
+     * @param IS_OVAL Whether or not to render the particles as ovals. If not then they are rendered as squares.
+     */
 	public Effect(final double ORIGIN_X, final double ORIGIN_Y, final boolean IS_OVAL) {
 		this.ORIGIN_X = ORIGIN_X;
 		this.ORIGIN_Y = ORIGIN_Y;
