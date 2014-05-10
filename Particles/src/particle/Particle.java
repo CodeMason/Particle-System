@@ -11,6 +11,7 @@ import java.awt.Toolkit;
  * --- Last Edit 21-Mar-2014
  */
 public class Particle {
+    /** The dimensions of the users screen. */
 	private final static Dimension SCREEN_DIMENSIONS = Toolkit.getDefaultToolkit().getScreenSize();
 	/** The location of the particle on the X-axis. */
 	private double x;
@@ -59,7 +60,10 @@ public class Particle {
 	}
 	
 	/**
-	 * Updates the particle's position, change in x, change in y,
+     * If the particle is off-screen then return true. If true is returned then
+     * the calling effect's update() method delete the particle.
+     *
+	 * Else updates the particle's position, change in x, change in y,
 	 * remaining lifetime, and color.
 	 * @return Whether the particle is 'dead' or not.
 	 */
