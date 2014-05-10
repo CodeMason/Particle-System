@@ -12,13 +12,19 @@ import particle.Particle;
 public class RainbowSnow extends Effect {
 	/** The length (x-axis) of the screen. */
 	private final double SCREEN_LENGTH;
+    /** An arbitrary number which controls how fast the rgb values are changed. */
 	private final double COLOR_CHANGE_CONSTANT = 0.125;
+    /** An rgb value representing the color to apply to all new particles. */
 	private double red = 255, green = 0, blue = 0;
+    /** A boolean value representing which color will be used next. */
 	private boolean changingToRed = false, changingToGreen = true, changingToBlue = false;
-	
-	/**
-	 * Constructs a new Snow object.
-	 */
+
+    /**
+     * Constructs a new RwinbowSnow particle effect.
+     * @param ORIGIN_X The origin, on the X-axis, of the effect.
+     * @param ORIGIN_Y The origin, on the Y-axis, of the effect.
+     * @param SCREEN_LENGTH The total length of the screen.
+     */
 	public RainbowSnow(final double ORIGIN_X, final double ORIGIN_Y, final double SCREEN_LENGTH) {
 		super(ORIGIN_X, ORIGIN_Y - 50, true);
 		this.SCREEN_LENGTH = SCREEN_LENGTH;
