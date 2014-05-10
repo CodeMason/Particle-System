@@ -8,7 +8,7 @@ import java.awt.Toolkit;
 /**
  * Represents a particle in 2D space.
  * @author Valkryst
- * --- Last Edit 21-Mar-2014
+ * --- Last Edit 10-May-2014
  */
 public class Particle {
     /** The dimensions of the users screen. */
