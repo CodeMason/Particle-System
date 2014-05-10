@@ -27,7 +27,7 @@ public class Effect {
 	protected final boolean IS_OVAL;
     /** Used to iterate over the list which contains the particles. */
 	protected Iterator<Particle> iterator;
-    /** Counts the number of update calls since the last update. */
+    /** Counts the number of update calls since the last creation of new particles. */
 	protected int counter = 0;
 
     /**
