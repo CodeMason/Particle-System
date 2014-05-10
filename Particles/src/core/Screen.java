@@ -25,10 +25,11 @@ public class Screen extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 
     private Thread gameThread;
-	private boolean isGameRunning = true;
 
 	private BufferStrategy BS = getBufferStrategy();
 	private InputKeyboard KEY = new InputKeyboard();
+
+    private boolean isProgramRunning = false;
 	
 	// Testing Stuff:
 	private Effect[] effect = new Effect[1];
@@ -61,6 +62,12 @@ public class Screen extends Canvas implements Runnable {
 		start();
 	}
 
+    public synchronized void start() {
+        isProgramRunning = true;
+        gameThread = new Thread(this, "Display");
+        gameThread.start();
+    }
+
 	public void run() {
 		long lastLoopTime = System.nanoTime();
 	    final int TARGET_FPS = 60;
@@ -68,7 +75,7 @@ public class Screen extends Canvas implements Runnable {
 		double delta = 0;
 		
 		// Keep looping until the game ends.
-		while(isGameRunning) {
+		while(isProgramRunning) {
 				long now = System.nanoTime();
 				long updateLength = now - lastLoopTime;
 				lastLoopTime = now;
@@ -98,12 +105,6 @@ public class Screen extends Canvas implements Runnable {
 		
 		stop();
 	}
-	
-	public synchronized void start() {
-		isGameRunning = true;
-		gameThread = new Thread(this, "Display");
-		gameThread.start();
-	}
 
 	public synchronized void stop() {
 		try {
@@ -122,7 +123,7 @@ public class Screen extends Canvas implements Runnable {
 		}
 		
 		if(KEY.isKeyPressed(KeyEvent.VK_ESCAPE) || KEY.isKeyPressed(KeyEvent.VK_ALT) && KEY.isKeyPressed(KeyEvent.VK_F4)) {
-			isGameRunning = false;
+			isProgramRunning = false;
 			System.exit(0);
 		}
 	}
