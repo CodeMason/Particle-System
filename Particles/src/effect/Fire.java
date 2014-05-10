@@ -7,12 +7,16 @@ import particle.Particle;
 /**
  * Represents a fire.
  * @author Valkryst
- * --- Last Edit 9-May-2014
+ * --- Last Edit 10-May-2014
  */
 public class Fire extends Effect {
+    /** One of the four colors used by the fire particles. */
 	private static final Color ONE = new Color(159, 70, 24, 100);
+    /** One of the four colors used by the fire particles. */
 	private static final Color TWO = new Color(208, 117, 29, 100);
+    /** One of the four colors used by the fire particles. */
 	private static final Color THREE = new Color(246, 206, 72, 100);
+    /** One of the four colors used by the fire particles. */
 	private static final Color FOUR = new Color(251, 239, 169, 100);
 	
 	/**
@@ -26,6 +30,8 @@ public class Fire extends Effect {
 	 * Updates the fire.
 	 */
 	public void update() {
+        // After 20 update calls, create new particles.
+        // This is an arbitrary number.
 		if(counter == 20) {
 			for(int i=0;i<10;i++) { newParticle(ONE, 4, 150, 19); }
 			for(int i=0;i<7;i++) { newParticle(TWO, 4, 125, 16); }
@@ -36,6 +42,7 @@ public class Fire extends Effect {
 			counter++;
 		}
 
+        // Iterate through the list of particles and update each one.
 		iterator = PARTICLES.iterator();
 		while(iterator.hasNext()) {
 			if(iterator.next().update()) {
