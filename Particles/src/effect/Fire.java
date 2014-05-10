@@ -18,10 +18,12 @@ public class Fire extends Effect {
 	private static final Color GOLD = new Color(246, 206, 72, 100);
     /** One of the four colors used by the fire particles. */
 	private static final Color YELLOW = new Color(251, 239, 169, 100);
-	
-	/**
-	 * Constructs a new Fire object.
-	 */
+
+    /**
+     * Constructs a new Snow particle effect.
+     * @param ORIGIN_X The origin, on the X-axis, of the effect.
+     * @param ORIGIN_Y The origin, on the Y-axis, of the effect.
+     */
 	public Fire(final double ORIGIN_X, final double ORIGIN_Y) {
 		super(ORIGIN_X, ORIGIN_Y, false);
 	}

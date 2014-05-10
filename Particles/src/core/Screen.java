@@ -11,7 +11,7 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import utility.Input_Keyboard;
+import utility.InputKeyboard;
 import utility.Logger;
 import effect.Effect;
 import effect.RainbowSnow;
@@ -28,7 +28,7 @@ public class Screen extends Canvas implements Runnable {
 	private boolean isGameRunning = true;
 
 	private BufferStrategy BS = getBufferStrategy();
-	private Input_Keyboard KEY = new Input_Keyboard();
+	private InputKeyboard KEY = new InputKeyboard();
 	
 	// Testing Stuff:
 	private Effect[] effect = new Effect[1];
