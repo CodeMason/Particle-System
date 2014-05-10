@@ -25,7 +25,20 @@ public class RainbowSnow extends Effect {
 	}
 	
 	/**
-	 * Updates the snow.
+	 * Creates a new color using the current rgb values.
+     * Initializes new snow particles.
+     * Changes the rgb values in the following way:
+     *     If we use the default values of red = 255 & changingToGreen = true then...
+     *         If red > 0 & green < 255
+     *         then red -= COLOR_CHANGE_CONSTANT & green += COLOR_CHANGE_CONSTANT.
+     *
+     *         Then when red == 0 and green == 255
+     *         changingToGreen = false & changingToBlue = true
+     *
+     *         Now repeat from the beginning, but swap the word red for green
+     *         and green for blue. Then when you reach the end swap the word
+     *         green for blue and blue for red. Thus the colors cycle.
+     *
 	 */
 	public void update() {
 		Color c = new Color((int)red, (int)green, (int)blue, 100);
