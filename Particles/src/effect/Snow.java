@@ -39,13 +39,8 @@ public class Snow extends Effect {
 			counter++;
 		}
 
-        // Iterate through the list of particles and update each one.
-		iterator = PARTICLES.iterator();
-		while(iterator.hasNext()) {
-			if(iterator.next().update()) {
-				iterator.remove();
-			}
-		}
+       // Iterate through the list of particles and update each one.
+       super.update();
 	}
 	
 	/**

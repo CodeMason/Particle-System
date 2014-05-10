@@ -43,9 +43,17 @@ public class Effect {
 	}
 	
 	/**
-	 * Updates the effect.
+	 * Updates each particle of the effect.
 	 */
-	public void Update() {}
+	public void update() {
+        // Iterate through the list of particles and update each one.
+        iterator = PARTICLES.iterator();
+        while(iterator.hasNext()) {
+            if(iterator.next().update()) {
+                iterator.remove();
+            }
+        }
+    }
 	
 	/**
 	 *  Renders the snow to the screen.

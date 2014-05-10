@@ -78,12 +78,8 @@ public class RainbowSnow extends Effect {
 			}
 		}
 
-		iterator = PARTICLES.iterator();
-		while(iterator.hasNext()) {
-			if(iterator.next().update()) {
-				iterator.remove();
-			}
-		}
+        // Iterate through the list of particles and update each one.
+        super.update();
 	}
 	
 	/**

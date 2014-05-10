@@ -47,12 +47,7 @@ public class Fire extends Effect {
 		}
 
         // Iterate through the list of particles and update each one.
-		iterator = PARTICLES.iterator();
-		while(iterator.hasNext()) {
-			if(iterator.next().update()) {
-				iterator.remove();
-			}
-		}
+        super.update();
 	}
 	
 	/**
