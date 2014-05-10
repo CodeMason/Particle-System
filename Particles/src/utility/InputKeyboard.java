@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
  * @author Valkryst
  * --- Last Edit 23-Sep-2013
  */
-public class Input_Keyboard implements KeyListener {
+public class InputKeyboard implements KeyListener {
 	private boolean[] isPressed = new boolean[128];
 	
 	/**
