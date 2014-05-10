@@ -26,7 +26,7 @@ public class Effect {
 	/** Whether or not to render the particles as ovals. If not then render as squares. Ovals are extremely CPU intensive for large effects*/
 	protected final boolean IS_OVAL;
     /** Used to iterate over the list which contains the particles. */
-	protected Iterator<Particle> iterator;
+	private Iterator<Particle> iterator;
     /** Counts the number of update calls since the last creation of new particles. */
 	protected int counter = 0;
 
