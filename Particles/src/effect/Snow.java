@@ -7,24 +7,31 @@ import particle.Particle;
 /**
  * Represents snow fall.
  * @author Valkryst
- * --- Last Edit 9-May-2014
+ * --- Last Edit 10-May-2014
  */
 public class Snow extends Effect {
 	/** The length (x-axis) of the screen. */
 	private final double SCREEN_LENGTH;
-	
-	/**
-	 * Constructs a new Snow object.
-	 */
+
+    /**
+     * Constructs a new Snow particle effect.
+     * @param ORIGIN_X The origin, on the X-axis, of the effect.
+     * @param ORIGIN_Y The origin, on the Y-axis, of the effect.
+     * @param SCREEN_LENGTH The total length of the screen.
+     */
 	public Snow(final double ORIGIN_X, final double ORIGIN_Y, final double SCREEN_LENGTH) {
 		super(ORIGIN_X, ORIGIN_Y - 50, true);
 		this.SCREEN_LENGTH = SCREEN_LENGTH;
 	}
-	
-	/**
-	 * Updates the snow.
-	 */
+
+    /**
+     * Updates the snow particles by following two simple steps:
+     *     If ten update calls have been made, then create more particles.
+     *     Call the update methods of all snow particles.
+     */
 	public void update() {
+        // After 10 update calls, create new particles.
+        // This is an arbitrary number.
 		if(counter == 10) {
 			for(int i=0;i<RANDOM.nextInt(300) + 20;i++) { newParticle(RANDOM.nextInt(8), 40); }
 			counter = 0;
@@ -32,6 +39,7 @@ public class Snow extends Effect {
 			counter++;
 		}
 
+        // Iterate through the list of particles and update each one.
 		iterator = PARTICLES.iterator();
 		while(iterator.hasNext()) {
 			if(iterator.next().update()) {
