@@ -24,35 +24,35 @@ public class Screen extends Canvas implements Runnable {
 	private InputKeyboard KEY = new InputKeyboard();
 
     private boolean isProgramRunning = false;
-	
+
 	// Testing Stuff:
 	private Effect[] effect = new Effect[1];
 	// End Testing Stuff.
-	
+
 	public Screen() {
         JFrame frame = new JFrame();
 		frame.setTitle("Particle Test");
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-		frame.setUndecorated(true);  
+		frame.setUndecorated(true);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.requestFocus();
-		
+
 		this.setSize(new Dimension(frame.getWidth(), frame.getHeight()));
         this.setFocusable(true);
         this.setVisible(true);
         this.setBackground(Color.black);
         this.addKeyListener(KEY);
-		
+
 		frame.add(this);
 		frame.setVisible(true);
-		
+
 		//effect = new Snow(0.0, 0.0, frame.getWidth());
 		for(int i=0;i<effect.length;i++) {
 			effect[i] = new RainbowSnow(0.0, 0.0, 1920);
 		}
-		
+
 		start();
 	}
 
@@ -63,20 +63,40 @@ public class Screen extends Canvas implements Runnable {
     }
 
 	public void run() {
+		long lastLoopTime = System.nanoTime();
+	    final int TARGET_FPS = 60;
+		final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
+		double delta = 0;
+
 		// Keep looping until the program ends.
 		while(isProgramRunning) {
-			try {
-                long startTime = System.currentTimeMillis();
-                updateLogic(); // no delta needed
-                render();
-                long elapsedTime = System.currentTimeMillis() - startTime;
-                Thread.sleep(elapsedTime);
-            } catch(Exception e) {
-                e.printStackTrace();
-                continue;
-            }
+				long now = System.nanoTime();
+				long updateLength = now - lastLoopTime;
+				lastLoopTime = now;
+			    delta += updateLength / ((double)OPTIMAL_TIME); // Work out how long its been since the last update.
+
+			    //Update the game's logic and then render the screen.
+			    while(delta >= 1) {
+			    	updateLogic(delta);
+			    	delta--;
+			    }
+
+			    render();
+
+			    // we want each frame to take 10 milliseconds, to do this
+			    // we've recorded when we started the frame. We add 10 milliseconds
+			    // to this and then factor in the current time to give
+			    // us our final value to wait for
+			    // remember this is in ms, whereas our lastLoopTime etc. vars are in ns.
+			    try {
+			    	long tempLong = (lastLoopTime-System.nanoTime() + OPTIMAL_TIME)/1000000;
+			    	if(tempLong <= 0) { continue; } // Skips the sleep()
+					Thread.sleep(tempLong);
+				} catch (InterruptedException e) {
+					continue;
+				}
 		}
-		
+
 		stop();
 	}
 
@@ -90,12 +110,12 @@ public class Screen extends Canvas implements Runnable {
 
 	// When called this updates all of the game's logic.
     // Still not entirely sure what to use delta for.
-	public void updateLogic() {
+	public void updateLogic(final double DELTA) {
 		//((Snow)effect).update();
 		for(Effect e : effect) {
             ((RainbowSnow)e).update();
 		}
-		
+
 		if(KEY.isKeyPressed(KeyEvent.VK_ESCAPE) || KEY.isKeyPressed(KeyEvent.VK_ALT) && KEY.isKeyPressed(KeyEvent.VK_F4)) {
 			isProgramRunning = false;
 			System.exit(0);
@@ -114,7 +134,7 @@ public class Screen extends Canvas implements Runnable {
         	});
         	return;
         }
-		
+
         // Creates the graphics object and then clears the screen.
         Graphics g = BS.getDrawGraphics();
         g.clearRect(0, 0, getWidth(), getHeight());
