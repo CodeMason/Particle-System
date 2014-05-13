@@ -65,7 +65,6 @@ public class Screen extends Canvas implements Runnable {
 	public void run() {
 		// Keep looping until the program ends.
 		while(isProgramRunning) {
-            System.out.println("FUCK YOU");
 			try {
                 long startTime = System.currentTimeMillis();
                 updateLogic(); // no delta needed
