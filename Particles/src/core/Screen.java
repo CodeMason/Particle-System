@@ -1,20 +1,14 @@
 package core;
 
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.image.BufferStrategy;
-
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-
-import utility.InputKeyboard;
-import utility.Logger;
 import effect.Effect;
 import effect.RainbowSnow;
+import utility.InputKeyboard;
+import utility.Logger;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferStrategy;
 
 /**
  * Represents a screen on which to draw.
@@ -69,38 +63,19 @@ public class Screen extends Canvas implements Runnable {
     }
 
 	public void run() {
-		long lastLoopTime = System.nanoTime();
-	    final int TARGET_FPS = 60;
-		final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;   
-		double delta = 0;
-		
 		// Keep looping until the program ends.
 		while(isProgramRunning) {
-				long now = System.nanoTime();
-				long updateLength = now - lastLoopTime;
-				lastLoopTime = now;
-			    delta += updateLength / ((double)OPTIMAL_TIME); // Work out how long its been since the last update.
-			    
-			    //Update the game's logic and then render the screen.
-			    while(delta >= 1) {
-			    	updateLogic(delta);
-			    	delta--;
-			    }
-			    
-			    render();
-			      
-			    // we want each frame to take 10 milliseconds, to do this
-			    // we've recorded when we started the frame. We add 10 milliseconds
-			    // to this and then factor in the current time to give 
-			    // us our final value to wait for
-			    // remember this is in ms, whereas our lastLoopTime etc. vars are in ns.
-			    try {
-			    	long tempLong = (lastLoopTime-System.nanoTime() + OPTIMAL_TIME)/1000000;
-			    	if(tempLong <= 0) { continue; } // Skips the sleep()
-					Thread.sleep(tempLong);
-				} catch (InterruptedException e) {
-					continue;
-				}
+            System.out.println("FUCK YOU");
+			try {
+                long startTime = System.currentTimeMillis();
+                updateLogic(); // no delta needed
+                render();
+                long elapsedTime = System.currentTimeMillis() - startTime;
+                Thread.sleep(elapsedTime);
+            } catch(Exception e) {
+                e.printStackTrace();
+                continue;
+            }
 		}
 		
 		stop();
@@ -116,7 +91,7 @@ public class Screen extends Canvas implements Runnable {
 
 	// When called this updates all of the game's logic.
     // Still not entirely sure what to use delta for.
-	public void updateLogic(final double DELTA) {
+	public void updateLogic() {
 		//((Snow)effect).update();
 		for(Effect e : effect) {
             ((RainbowSnow)e).update();
