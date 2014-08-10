@@ -30,23 +30,7 @@ public class Screen extends Canvas implements Runnable {
 	// End Testing Stuff.
 
 	public Screen() {
-        JFrame frame = new JFrame();
-		frame.setTitle("Particle Test");
-		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-		frame.setUndecorated(true);
-		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
-		frame.requestFocus();
-
-		this.setSize(new Dimension(frame.getWidth(), frame.getHeight()));
-        this.setFocusable(true);
-        this.setVisible(true);
-        this.setBackground(Color.black);
         this.addKeyListener(KEY);
-
-		frame.add(this);
-		frame.setVisible(true);
 
 		//effect = new Snow(0.0, 0.0, frame.getWidth());
 		for(int i=0;i<effect.length;i++) {
