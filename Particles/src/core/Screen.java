@@ -27,7 +27,7 @@ public class Screen extends Canvas implements Runnable {
 	private Effect[] effect = new Effect[1];
 	// End Testing Stuff.
 
-	public Screen(final Effect[] EFFECTS) {
+	public Screen() {
         this.addKeyListener(KEY);
 
         // Testing Stuff:
