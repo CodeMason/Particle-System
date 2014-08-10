@@ -16,8 +16,6 @@ import java.awt.image.BufferStrategy;
  * --- Last Edit 9-May-2014
  */
 public class Screen extends Canvas implements Runnable {
-	private static final long serialVersionUID = 1L;
-
     private Thread gameThread;
 
 	private BufferStrategy BS = getBufferStrategy();
