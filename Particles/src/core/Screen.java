@@ -13,7 +13,7 @@ import java.awt.image.BufferStrategy;
 /**
  * Represents a screen on which to draw.
  * @author Valkryst
- * --- Last Edit 9-May-2014
+ * --- Last Edit 10-August-2014
  */
 public class Screen extends Canvas implements Runnable {
     private Thread gameThread;
@@ -111,8 +111,9 @@ public class Screen extends Canvas implements Runnable {
 	// When called this updates the screen.
 	public void render() {
 		// Forces the canvas to use triple buffering.
+        // This can fail and cause an error on multi-monitor displays.
 		BS = getBufferStrategy();
-        if (BS == null) {
+        if(BS == null) {
         	SwingUtilities.invokeLater(new Runnable() {
         	    public void run() {
         	        createBufferStrategy(3);
