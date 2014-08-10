@@ -7,7 +7,7 @@ import java.awt.*;
 /**
  * Represents rainbow snow fall.
  * @author Valkryst
- * --- Last Edit 10-May-2014
+ * --- Last Edit 10-August-2014
  */
 public class RainbowSnow extends Effect {
 	/** The length (x-axis) of the screen. */
