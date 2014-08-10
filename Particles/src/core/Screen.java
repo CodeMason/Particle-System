@@ -104,7 +104,7 @@ public class Screen extends Canvas implements Runnable {
 		try {
 			gameThread.join();
 		} catch(InterruptedException e) {
-			Logger.writeError(e.getMessage());
+			Logger.writeLog(e.getMessage(), Logger.LOG_TYPE_ERROR);
 		}
 	}
 
