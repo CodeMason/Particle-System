@@ -27,13 +27,15 @@ public class Screen extends Canvas implements Runnable {
 	private Effect[] effect = new Effect[1];
 	// End Testing Stuff.
 
-	public Screen() {
+	public Screen(final Effect[] EFFECTS) {
         this.addKeyListener(KEY);
 
+        // Testing Stuff:
 		//effect = new Snow(0.0, 0.0, frame.getWidth());
 		for(int i=0;i<effect.length;i++) {
 			effect[i] = new RainbowSnow(0.0, 0.0, 1920);
 		}
+        // End Testing Stuff.
 
 		start();
 	}
@@ -93,10 +95,12 @@ public class Screen extends Canvas implements Runnable {
 	// When called this updates all of the game's logic.
     // Still not entirely sure what to use delta for.
 	public void updateLogic(final double DELTA) {
+        // Testing Stuff:
 		//((Snow)effect).update();
 		for(Effect e : effect) {
             ((RainbowSnow)e).update();
 		}
+        // End Testing Stuff.
 
 		if(KEY.isKeyPressed(KeyEvent.VK_ESCAPE) || KEY.isKeyPressed(KeyEvent.VK_ALT) && KEY.isKeyPressed(KeyEvent.VK_F4)) {
 			isProgramRunning = false;
@@ -121,7 +125,9 @@ public class Screen extends Canvas implements Runnable {
         Graphics g = BS.getDrawGraphics();
         g.clearRect(0, 0, getWidth(), getHeight());
 
+        // Testing Stuff:
         for(Effect e: effect) { ((RainbowSnow)e).render(g, e.getIsOval()); }
+        // End Testing Stuff.
         
         g.dispose();
 		BS.show();
