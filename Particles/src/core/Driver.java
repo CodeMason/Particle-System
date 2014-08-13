@@ -6,9 +6,8 @@ import java.awt.*;
 public class Driver {
 	public static void main(String[] args) {
         // Create the frame.
-        JFrame frame = new JFrame();
+        Frame frame = new JFrame();
         frame.setTitle("Particle Test");
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setExtendedState(Frame.MAXIMIZED_BOTH);
         frame.setUndecorated(true);
         frame.setResizable(false);
@@ -24,5 +23,7 @@ public class Driver {
         frame.add(screen);
 
         frame.setVisible(true);
+
+        screen.start();
 	}
 }
