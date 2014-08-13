@@ -5,7 +5,6 @@ import effect.RainbowSnow;
 import utility.InputKeyboard;
 import utility.Logger;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
@@ -36,8 +35,6 @@ public class Screen extends Canvas implements Runnable {
 			effect[i] = new RainbowSnow(0.0, 0.0, 1920);
 		}
         // End Testing Stuff.
-
-		start();
 	}
 
     public synchronized void start() {
@@ -61,7 +58,7 @@ public class Screen extends Canvas implements Runnable {
 
 			    //Update the game's logic and then render the screen.
 			    while(delta >= 1) {
-			    	updateLogic(delta);
+			    	update(delta);
 			    	delta--;
 			    }
 
@@ -94,7 +91,7 @@ public class Screen extends Canvas implements Runnable {
 
 	// When called this updates all of the game's logic.
     // Still not entirely sure what to use delta for.
-	public void updateLogic(final double DELTA) {
+	private void update(final double DELTA) {
         // Testing Stuff:
 		//((Snow)effect).update();
 		for(Effect e : effect) {
@@ -109,17 +106,13 @@ public class Screen extends Canvas implements Runnable {
 	}
 
 	// When called this updates the screen.
-	public void render() {
-		// Forces the canvas to use triple buffering.
+	private void render() {
+        // Forces the canvas to use triple buffering.
         // This can fail and cause an error on multi-monitor displays.
-		BS = getBufferStrategy();
+        BS = getBufferStrategy();
         if(BS == null) {
-        	SwingUtilities.invokeLater(new Runnable() {
-        	    public void run() {
-        	        createBufferStrategy(3);
-        	    }
-        	});
-        	return;
+            createBufferStrategy(3);
+            return;
         }
 
         // Creates the graphics object and then clears the screen.
