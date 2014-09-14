@@ -2,8 +2,8 @@ package core;
 
 import effect.Effect;
 import effect.RainbowSnow;
-import utility.InputKeyboard;
-import utility.Logger;
+import input.InputKeyboard;
+import misc.Logger;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -12,12 +12,11 @@ import java.awt.image.BufferStrategy;
 /**
  * Represents a screen on which to draw.
  * @author Valkryst
- * --- Last Edit 10-August-2014
+ * --- Last Edit 13-August-2014
  */
 public class Screen extends Canvas implements Runnable {
     private Thread gameThread;
 
-	private BufferStrategy BS = getBufferStrategy();
 	private InputKeyboard KEY = new InputKeyboard();
 
     private boolean isProgramRunning = false;
@@ -109,10 +108,11 @@ public class Screen extends Canvas implements Runnable {
 	private void render() {
         // Forces the canvas to use triple buffering.
         // This can fail and cause an error on multi-monitor displays.
-        BS = getBufferStrategy();
+        BufferStrategy BS = getBufferStrategy();
+
         if(BS == null) {
             createBufferStrategy(3);
-            return;
+            BS = getBufferStrategy();
         }
 
         // Creates the graphics object and then clears the screen.
