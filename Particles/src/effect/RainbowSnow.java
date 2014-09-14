@@ -47,9 +47,8 @@ public class RainbowSnow extends Effect {
      *
 	 */
 	public void update() {
-		Color c = new Color((int)red, (int)green, (int)blue, 100);
 		if(counter == 10) {
-			for(int i=0;i<(Math.random() * 1800 + 1) + 120;i++) { newParticle(c, (int)(Math.floor(Math.random() * 6) + 8), 40); }
+			for(int i=0;i<(Math.random() * 1800 + 1) + 120;i++) { newParticle(); }
 			counter = 0;
 		} else {
 			counter++;
@@ -90,12 +89,19 @@ public class RainbowSnow extends Effect {
 	
 	/**
 	 * Creates a new Particle object.
-     * @param COLOR The color of the new particle
-	 * @param SIZE The size, in pixels^2, of the new Particle.
-	 * @param LIFE The number of movements before the new Particle decays.
 	 */
-	public void newParticle(final Color COLOR, int SIZE, int LIFE) {
+	public void newParticle() {
         boolean randBool = Math.random() >= 0.5;
-        PARTICLES.add(new Particle((int)(Math.random() * SCREEN_LENGTH + 1), super.ORIGIN_Y, Math.random() * (randBool ? -2 : 2), Math.random() * 2.5, 0.0050 * (randBool ? -1 : 1), 0.0, SIZE + (int)(Math.random() * 8), LIFE + (int)(Math.random() * 800 + 1), COLOR));
+        double xCoord = (int)(Math.random() * SCREEN_LENGTH);
+        double yCoord = super.ORIGIN_Y;
+        double dx = Math.random() * (randBool ? -2 : 2);
+        double dy = Math.random() * 2.5;
+        double gravityX = 0.0050 * (randBool ? -1 : 1);
+        double gravityY = 0.0;
+        int size = (int)(Math.random() * 16 + 1);
+        double life = (Math.random() * 800 + 1);
+        Color color = new Color((int)red, (int)green, (int)blue, 100);
+
+        PARTICLES.add(new Particle(xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color));
 	}
 }
