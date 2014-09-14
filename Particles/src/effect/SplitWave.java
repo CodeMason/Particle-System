@@ -13,7 +13,7 @@ public class SplitWave extends Effect {
     /** The length (x-axis) of the screen. */
     private final double SCREEN_LENGTH;
     /** An arbitrary number which controls how fast the rgb values are changed. */
-    private final double COLOR_CHANGE_CONSTANT = 0.250;
+    private final double COLOR_CHANGE_CONSTANT = 3;
     /** An rgb value representing the color to apply to all new particles. */
     private double red = 255, green = 0, blue = 0;
     /** A boolean value representing which color will be used next. */
@@ -26,7 +26,7 @@ public class SplitWave extends Effect {
      * @param SCREEN_LENGTH The total length of the screen.
      */
     public SplitWave(final double ORIGIN_X, final double ORIGIN_Y, final double SCREEN_LENGTH) {
-        super(ORIGIN_X, ORIGIN_Y - 50, true);
+        super(ORIGIN_X, ORIGIN_Y - 50, false);
         this.SCREEN_LENGTH = SCREEN_LENGTH;
     }
 
