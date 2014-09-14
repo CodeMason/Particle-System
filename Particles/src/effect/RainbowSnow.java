@@ -49,7 +49,7 @@ public class RainbowSnow extends Effect {
 	public void update() {
 		Color c = new Color((int)red, (int)green, (int)blue, 100);
 		if(counter == 10) {
-			for(int i=0;i<RANDOM.nextInt(1800) + 120;i++) { newParticle(c, RANDOM.nextInt(8), 40); }
+			for(int i=0;i<(Math.random() * 1800 + 1) + 120;i++) { newParticle(c, (int)(Math.floor(Math.random() * 6) + 8), 40); }
 			counter = 0;
 		} else {
 			counter++;
@@ -95,6 +95,6 @@ public class RainbowSnow extends Effect {
 	 * @param LIFE The number of movements before the new Particle decays.
 	 */
 	public void newParticle(final Color COLOR, int SIZE, int LIFE) {
-		PARTICLES.add(new Particle(RANDOM.nextInt((int)SCREEN_LENGTH), super.ORIGIN_Y, RANDOM.nextDouble() * (RANDOM.nextBoolean() ? -2 : 2), RANDOM.nextDouble() * 2.5, 0.0050 *(RANDOM.nextBoolean() ? -1 : 1), 0.0, SIZE + RANDOM.nextInt(8), LIFE + RANDOM.nextInt(800), COLOR));
+		PARTICLES.add(new Particle((int)(Math.random() * SCREEN_LENGTH + 1), super.ORIGIN_Y, Math.random() * (Math.random() > 0.5 ? -2 : 2), Math.random() * 2.5, 0.0050 *(Math.random() > 0.5 ? -1 : 1), 0.0, SIZE + (int)(Math.random() * 8), LIFE + (int)(Math.random() * 800 + 1), COLOR));
 	}
 }
