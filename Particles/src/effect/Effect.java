@@ -1,14 +1,12 @@
 package effect;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import particle.Particle;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-
-import particle.Particle;
 
 /**
  * Represents a particle effect.
@@ -26,8 +24,6 @@ public class Effect {
 	protected final double ORIGIN_Y;
 	/** Whether or not to render the particles as ovals. If not then render as squares. Ovals are extremely CPU intensive for large effects*/
 	protected final boolean IS_OVAL;
-    /** Used to iterate over the list which contains the particles. */
-	private Iterator<Particle> iterator;
     /** Counts the number of update calls since the last creation of new particles. */
 	protected int counter = 0;
 
@@ -48,7 +44,7 @@ public class Effect {
 	 */
 	public void update() {
         // Iterate through the list of particles and update each one.
-        iterator = PARTICLES.iterator();
+        Iterator<Particle> iterator = PARTICLES.iterator();
         while(iterator.hasNext()) {
             if(iterator.next().update()) {
                 iterator.remove();
@@ -57,12 +53,12 @@ public class Effect {
     }
 	
 	/**
-	 *  Renders the snow to the screen.
+	 * Renders the snow to the screen.
 	 * @param G Graphics object with which to draw.
 	 */
 	public void render(final Graphics G, final boolean IS_OVAL) {
 		((Graphics2D)G).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		iterator = PARTICLES.iterator();
+        Iterator<Particle> iterator = PARTICLES.iterator();
 		while(iterator.hasNext()) {
 			iterator.next().render(G, IS_OVAL);
 		}
