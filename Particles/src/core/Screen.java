@@ -11,7 +11,7 @@ import java.awt.image.BufferStrategy;
 /**
  * Represents a screen on which to draw.
  * @author Valkryst
- * --- Last Edit 13-August-2014
+ * --- Last Edit 14-September-2014
  */
 public class Screen extends Canvas implements Runnable {
     private Thread gameThread;
@@ -28,7 +28,7 @@ public class Screen extends Canvas implements Runnable {
         this.addKeyListener(KEY);
 
         // Testing Stuff:
-		    // effect[0] = new RainbowSnow(0.0, 0.0, 1920);
+            // effect[0] = new RainbowSnow(0.0, 0.0, 1920);
             effect[0] = new SplitWave(0.0, 0.0, 1920);
             // effect[0] = new Snow(0.0, 0.0, 1920);
             // effect[0] = new Fire(512.0, 512.0);
@@ -104,26 +104,31 @@ public class Screen extends Canvas implements Runnable {
 
 	// When called this updates the screen.
 	private void render() {
-        // Forces the canvas to use triple buffering.
-        // This can fail and cause an error on multi-monitor displays.
-        BufferStrategy BS = getBufferStrategy();
+        try {
+            BufferStrategy BS = getBufferStrategy();
 
-        if(BS == null) {
-            createBufferStrategy(3);
-            BS = getBufferStrategy();
+            // Forces the canvas to use triple buffering.
+            // This can fail and cause an exception on multi-monitor displays.
+            if(BS == null) {
+                createBufferStrategy(3);
+                BS = getBufferStrategy();
+            }
+
+            // Creates the graphics object and then clears the screen.
+            Graphics g = BS.getDrawGraphics();
+            g.clearRect(0, 0, getWidth(), getHeight());
+
+            // Testing Stuff:
+            for(Effect e: effect) {
+                e.render(g, e.getIsOval());
+            }
+            // End Testing Stuff.
+
+            g.dispose();
+            BS.show();
+        } catch(Exception e) {
+            Logger.writeLog("An exception has occured in the render() method of the Screen class. This can sometimes happen on multi-monitor displays. Try restarting the program.", Logger.LOG_TYPE_ERROR);
+            System.exit(1);
         }
-
-        // Creates the graphics object and then clears the screen.
-        Graphics g = BS.getDrawGraphics();
-        g.clearRect(0, 0, getWidth(), getHeight());
-
-        // Testing Stuff:
-        for(Effect e: effect) {
-            e.render(g, e.getIsOval());
-        }
-        // End Testing Stuff.
-        
-        g.dispose();
-		BS.show();
 	}
 }
