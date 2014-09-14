@@ -6,7 +6,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Represents a particle effect.
@@ -14,8 +13,6 @@ import java.util.Random;
  * --- Last Edit 10-May-2014
  */
 public class Effect {
-    /** An instance of this class is used to generate a stream of pseudorandom numbers. */
-	protected final static Random RANDOM = new Random();
 	/** A collection of particles that make up the snow.*/
 	protected final List<Particle> PARTICLES = new ArrayList<Particle>();
 	/** The origin of this snow on the X-axis.*/
