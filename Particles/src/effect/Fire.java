@@ -7,7 +7,7 @@ import java.awt.*;
 /**
  * Represents a fire.
  * @author Valkryst
- * --- Last Edit 10-May-2014
+ * --- Last Edit 14-September-2014
  */
 public class Fire extends Effect {
     /** One of the four colors used by the fire particles. */
@@ -37,6 +37,7 @@ public class Fire extends Effect {
         // After 20 update calls, create new particles.
         // This is an arbitrary number.
 		if(counter == 20) {
+            // Create X particles of each color. These numbers are all arbitrary.
 			for(int i=0;i<10;i++) { newParticle(REDISH_BROWN, 150, 19); }
 			for(int i=0;i<7;i++) { newParticle(DARK_ORANGE, 125, 16); }
 			for(int i=0;i<5;i++) { newParticle(GOLD, 100, 13); }
