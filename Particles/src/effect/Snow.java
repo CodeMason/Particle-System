@@ -7,7 +7,7 @@ import java.awt.*;
 /**
  * Represents snow fall.
  * @author Valkryst
- * --- Last Edit 10-May-2014
+ * --- Last Edit 14-September-2014
  */
 public class Snow extends Effect {
 	/** The length (x-axis) of the screen. */
