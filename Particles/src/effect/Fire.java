@@ -1,8 +1,8 @@
 package effect;
 
-import java.awt.Color;
-
 import particle.Particle;
+
+import java.awt.*;
 
 /**
  * Represents a fire.
@@ -37,10 +37,10 @@ public class Fire extends Effect {
         // After 20 update calls, create new particles.
         // This is an arbitrary number.
 		if(counter == 20) {
-			for(int i=0;i<10;i++) { newParticle(REDISH_BROWN, 4, 150, 19); }
-			for(int i=0;i<7;i++) { newParticle(DARK_ORANGE, 4, 125, 16); }
-			for(int i=0;i<5;i++) { newParticle(GOLD, 4, 100, 13); }
-			for(int i=0;i<2;i++) { newParticle(YELLOW, 4, 50, 10); }
+			for(int i=0;i<10;i++) { newParticle(REDISH_BROWN, 150, 19); }
+			for(int i=0;i<7;i++) { newParticle(DARK_ORANGE, 125, 16); }
+			for(int i=0;i<5;i++) { newParticle(GOLD, 100, 13); }
+			for(int i=0;i<2;i++) { newParticle(YELLOW, 50, 10); }
 			counter = 0;
 		} else {
 			counter++;
@@ -52,12 +52,19 @@ public class Fire extends Effect {
 	
 	/**
 	 * Creates a new Particle object.
-	 * @param SIZE The size, in pixels^2, of the new Particle.
 	 * @param LIFE The number of movements before the new Particle decays.
 	 */
-	public void newParticle(final Color COLOR, final int SIZE, final int LIFE, final int MAX_AXIS_MOVEMENT) {
-		double x = super.ORIGIN_X;
-		x += RANDOM.nextInt(MAX_AXIS_MOVEMENT) * (RANDOM.nextBoolean() ? -1 : 1);
-		PARTICLES.add(new Particle(x, super.ORIGIN_Y, RANDOM.nextDouble() / 4, RANDOM.nextDouble() * -1, 0.0, 0.0015 * (RANDOM.nextBoolean() ? 1 : -1), SIZE + RANDOM.nextInt(10), LIFE, COLOR));
+	public void newParticle(final Color COLOR, final int LIFE, final int MAX_AXIS_MOVEMENT) {
+        boolean randBool = Math.random() >= 0.5;
+
+        double xCoord = super.ORIGIN_X + (Math.random() * MAX_AXIS_MOVEMENT) * (randBool ? -1 : 1);
+        double yCoord = super.ORIGIN_Y;
+        double dx = Math.random() / 4;
+        double dy = Math.random() * -1;
+        double gravityX = 0.0;
+        double gravityY = 0.0015 * (randBool ? 1 : -1);
+        int size = 4 + (int)(Math.random() * 10);
+
+		PARTICLES.add(new Particle(xCoord, yCoord, dx, dy, gravityX, gravityY, size, LIFE, COLOR));
 	}
 }
