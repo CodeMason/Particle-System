@@ -8,7 +8,7 @@ import java.awt.Toolkit;
 /**
  * Represents a particle in 2D space.
  * @author Valkryst
- * --- Last Edit 10-May-2014
+ * --- Last Edit 14-September-2014
  */
 public class Particle {
     /** The dimensions of the users screen. */
@@ -76,7 +76,8 @@ public class Particle {
 			dx += GRAVITY_X;
 			dy += GRAVITY_Y;
 			currentLife--;
-			color = new Color(color.getRed(), color.getGreen(), color.getBlue(), (int)((currentLife/TOTAL_LIFE)*100));
+            int alpha = (int)((currentLife/TOTAL_LIFE)*100);
+			color = new Color(color.getRed(), color.getGreen(), color.getBlue(), (alpha >= 0 ? alpha : 0));
 			return currentLife <= 0;
 		}
 	}
