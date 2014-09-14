@@ -11,9 +11,9 @@ import java.awt.*;
  */
 public class RainbowSnow extends Effect {
 	/** The length (x-axis) of the screen. */
-	private final double SCREEN_LENGTH;
+	private final double screenLength;
     /** An arbitrary number which controls how fast the rgb values are changed. */
-	private final double COLOR_CHANGE_CONSTANT = 0.250;
+	private static final double COLOR_CHANGE_CONSTANT = 0.250;
     /** An rgb value representing the color to apply to all new particles. */
 	private double red = 255, green = 0, blue = 0;
     /** A boolean value representing which color will be used next. */
@@ -21,13 +21,13 @@ public class RainbowSnow extends Effect {
 
     /**
      * Constructs a new RwinbowSnow particle effect.
-     * @param ORIGIN_X The origin, on the X-axis, of the effect.
-     * @param ORIGIN_Y The origin, on the Y-axis, of the effect.
-     * @param SCREEN_LENGTH The total length of the screen.
+     * @param originX The origin, on the X-axis, of the effect.
+     * @param originY The origin, on the Y-axis, of the effect.
+     * @param screenLength The total length of the screen.
      */
-	public RainbowSnow(final double ORIGIN_X, final double ORIGIN_Y, final double SCREEN_LENGTH) {
-		super(ORIGIN_X, ORIGIN_Y - 50, true);
-		this.SCREEN_LENGTH = SCREEN_LENGTH;
+	public RainbowSnow(final double originX, final double originY, final double screenLength) {
+		super(originX, originY - 50, true);
+		this.screenLength = screenLength;
 	}
 	
 	/**
@@ -92,8 +92,8 @@ public class RainbowSnow extends Effect {
 	 */
 	public void newParticle() {
         boolean randBool = Math.random() >= 0.5;
-        double xCoord = (int)(Math.random() * SCREEN_LENGTH);
-        double yCoord = super.ORIGIN_Y;
+        double xCoord = (int)(Math.random() * screenLength);
+        double yCoord = super.originY;
         double dx = Math.random() * (randBool ? -2 : 2);
         double dy = Math.random() * 2.5;
         double gravityX = 0.0050 * (randBool ? -1 : 1);
@@ -102,6 +102,6 @@ public class RainbowSnow extends Effect {
         double life = (Math.random() * 800 + 1);
         Color color = new Color((int)red, (int)green, (int)blue, 100);
 
-        PARTICLES.add(new Particle(xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color));
+        particles.add(new Particle(xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color));
 	}
 }

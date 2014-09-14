@@ -14,26 +14,26 @@ import java.util.List;
  */
 public class Effect {
 	/** A collection of particles that make up the snow.*/
-	protected final List<Particle> PARTICLES = new ArrayList<Particle>();
+	protected final List<Particle> particles = new ArrayList<Particle>();
 	/** The origin of this snow on the X-axis.*/
-	protected final double ORIGIN_X;
+	protected final double originX;
 	/** The origin of this snow on the Y-axis.*/
-	protected final double ORIGIN_Y;
+	protected final double originY;
 	/** Whether or not to render the particles as ovals. If not then render as squares. Ovals are extremely CPU intensive for large effects*/
-	protected final boolean IS_OVAL;
+	protected final boolean isOval;
     /** Counts the number of update calls since the last creation of new particles. */
 	protected int counter = 0;
 
     /**
      * Basic constructor for an effect.
-     * @param ORIGIN_X The origin, on the X-axis, of the effect.
-     * @param ORIGIN_Y The origin, on the Y-axis, of the effect.
-     * @param IS_OVAL Whether or not to render the particles as ovals. If not then they are rendered as squares.
+     * @param originX The origin, on the X-axis, of the effect.
+     * @param originY The origin, on the Y-axis, of the effect.
+     * @param isOval Whether or not to render the particles as ovals. If not then they are rendered as squares.
      */
-	public Effect(final double ORIGIN_X, final double ORIGIN_Y, final boolean IS_OVAL) {
-		this.ORIGIN_X = ORIGIN_X;
-		this.ORIGIN_Y = ORIGIN_Y;
-		this.IS_OVAL = IS_OVAL;
+	public Effect(final double originX, final double originY, final boolean isOval) {
+		this.originX = originX;
+		this.originY = originY;
+		this.isOval = isOval;
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class Effect {
 	 */
 	public void update() {
         // Iterate through the list of particles and update each one.
-        Iterator<Particle> iterator = PARTICLES.iterator();
+        Iterator<Particle> iterator = particles.iterator();
         while(iterator.hasNext()) {
             if(iterator.next().update()) {
                 iterator.remove();
@@ -51,16 +51,16 @@ public class Effect {
 	
 	/**
 	 * Renders the snow to the screen.
-	 * @param G Graphics object with which to draw.
+	 * @param g Graphics object with which to draw.
 	 */
-	public void render(final Graphics G, final boolean IS_OVAL) {
-		((Graphics2D)G).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        Iterator<Particle> iterator = PARTICLES.iterator();
+	public void render(final Graphics g, final boolean isOval) {
+		((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        Iterator<Particle> iterator = particles.iterator();
 		while(iterator.hasNext()) {
-			iterator.next().render(G, IS_OVAL);
+			iterator.next().render(g, isOval);
 		}
 	}
 	
 	/** @return Whether or not to render the particles as ovals. If not then render as squares. */
-	public boolean getIsOval() { return IS_OVAL; } 
+	public boolean getIsOval() { return isOval; }
 }

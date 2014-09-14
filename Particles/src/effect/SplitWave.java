@@ -97,7 +97,7 @@ public class SplitWave extends Effect {
     public void newParticle(final Color color, int size, int life) {
         boolean randBool = Math.random() >= 0.5;
         double randFloat = Math.random();
-        PARTICLES.add(new Particle((int)(randFloat * screenLength + 1), super.ORIGIN_Y, randFloat * (randBool ? -2 : 2), randFloat * 2.5, 0.0050 * (randBool ? -1 : 1), 0.0, size + (int)(randFloat * 8 + 1), life + (int)(Math.random() * 800 + 1), color));
+        particles.add(new Particle((int)(randFloat * screenLength + 1), super.originY, randFloat * (randBool ? -2 : 2), randFloat * 2.5, 0.0050 * (randBool ? -1 : 1), 0.0, size + (int)(randFloat * 8 + 1), life + (int)(Math.random() * 800 + 1), color));
     }
 }
 

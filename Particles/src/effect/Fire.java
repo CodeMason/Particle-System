@@ -21,11 +21,11 @@ public class Fire extends Effect {
 
     /**
      * Constructs a new Snow particle effect.
-     * @param ORIGIN_X The origin, on the X-axis, of the effect.
-     * @param ORIGIN_Y The origin, on the Y-axis, of the effect.
+     * @param originX The origin, on the X-axis, of the effect.
+     * @param originY The origin, on the Y-axis, of the effect.
      */
-	public Fire(final double ORIGIN_X, final double ORIGIN_Y) {
-		super(ORIGIN_X, ORIGIN_Y, false);
+	public Fire(final double originX, final double originY) {
+		super(originX, originY, false);
 	}
 	
 	/**
@@ -53,19 +53,19 @@ public class Fire extends Effect {
 	
 	/**
 	 * Creates a new Particle object.
-	 * @param LIFE The number of movements before the new Particle decays.
+	 * @param life The number of movements before the new Particle decays.
 	 */
-	public void newParticle(final Color COLOR, final int LIFE, final int MAX_AXIS_MOVEMENT) {
+	public void newParticle(final Color color, final int life, final int maxAxisMovement) {
         boolean randBool = Math.random() >= 0.5;
 
-        double xCoord = super.ORIGIN_X + (Math.random() * MAX_AXIS_MOVEMENT) * (randBool ? -1 : 1);
-        double yCoord = super.ORIGIN_Y;
+        double xCoord = super.originX + (Math.random() * maxAxisMovement) * (randBool ? -1 : 1);
+        double yCoord = super.originY;
         double dx = Math.random() / 4;
         double dy = Math.random() * -1;
         double gravityX = 0.0;
         double gravityY = 0.0015 * (randBool ? 1 : -1);
         int size = 4 + (int)(Math.random() * 10);
 
-		PARTICLES.add(new Particle(xCoord, yCoord, dx, dy, gravityX, gravityY, size, LIFE, COLOR));
+		particles.add(new Particle(xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color));
 	}
 }
