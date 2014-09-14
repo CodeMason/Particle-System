@@ -21,7 +21,7 @@ public class Screen extends Canvas implements Runnable {
     private boolean isProgramRunning = false;
 
 	// Testing Stuff:
-	private Effect[] effect = new Effect[3];
+	private Effect[] effect = new Effect[1];
 	// End Testing Stuff.
 
 	public Screen() {
