@@ -33,7 +33,7 @@ public class Snow extends Effect {
         // After 10 update calls, create new particles.
         // This is an arbitrary number.
 		if(counter == 10) {
-			for(int i=0;i<(Math.random() * 300 + 1) + 20;i++) { newParticle(40); }
+			for(int i=0;i<(Math.random() * 300 + 1) + 20;i++) { newParticle(); }
 			counter = 0;
 		} else {
 			counter++;
@@ -45,9 +45,8 @@ public class Snow extends Effect {
 	
 	/**
 	 * Creates a new Particle object.
-	 * @param LIFE The number of movements before the new Particle decays.
 	 */
-	public void newParticle(final int LIFE) {
+	public void newParticle() {
         double xCoord = (int)(Math.random() * SCREEN_LENGTH);
         double yCoord = super.ORIGIN_Y;
         double dx = Math.random() * (Math.random() >= 0.5 ? -2 : 2);
@@ -55,7 +54,8 @@ public class Snow extends Effect {
         double gravityX = -0.0075;
         double gravityY = 0.0;
         int size = (int)(Math.random() * 8 + 1);
-        double life = LIFE + (Math.random() * 800 + 1);
+        double life = Math.random() * 800 + 1;
+
         PARTICLES.add(new Particle(xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, Color.WHITE));
 	}
 }
