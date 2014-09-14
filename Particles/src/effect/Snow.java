@@ -1,8 +1,8 @@
 package effect;
 
-import java.awt.Color;
-
 import particle.Particle;
+
+import java.awt.*;
 
 /**
  * Represents snow fall.
@@ -33,7 +33,7 @@ public class Snow extends Effect {
         // After 10 update calls, create new particles.
         // This is an arbitrary number.
 		if(counter == 10) {
-			for(int i=0;i<RANDOM.nextInt(300) + 20;i++) { newParticle(RANDOM.nextInt(8), 40); }
+			for(int i=0;i<(Math.random() * 300 + 1) + 20;i++) { newParticle((int)(Math.random() * 8 + 1), 40); }
 			counter = 0;
 		} else {
 			counter++;
@@ -49,6 +49,13 @@ public class Snow extends Effect {
 	 * @param LIFE The number of movements before the new Particle decays.
 	 */
 	public void newParticle(final int SIZE, final int LIFE) {
-		PARTICLES.add(new Particle(RANDOM.nextInt((int)SCREEN_LENGTH), super.ORIGIN_Y, RANDOM.nextDouble() * (RANDOM.nextBoolean() ? -2 : 2), RANDOM.nextDouble() * 2.5, -0.0075, 0.0, SIZE, LIFE + RANDOM.nextInt(800), Color.WHITE));
+        double xCoord = (int)(Math.random() * SCREEN_LENGTH + 1);
+        double yCoord = super.ORIGIN_Y;
+        double dx = Math.random() * (Math.random() >= 0.5 ? -2 : 2);
+        double dy = Math.random() * 2.5;
+        double gravityX = -0.0075;
+        double gravityY = 0.0;
+        double life = LIFE + (Math.random() * 800 + 1);
+        PARTICLES.add(new Particle(xCoord, yCoord, dx, dy, gravityX, gravityY, SIZE, life, Color.WHITE));
 	}
 }
