@@ -1,7 +1,6 @@
 package core;
 
-import effect.Effect;
-import effect.RainbowSnow;
+import effect.*;
 import input.InputKeyboard;
 import misc.Logger;
 
@@ -22,17 +21,17 @@ public class Screen extends Canvas implements Runnable {
     private boolean isProgramRunning = false;
 
 	// Testing Stuff:
-	private Effect[] effect = new Effect[1];
+	private Effect[] effect = new Effect[3];
 	// End Testing Stuff.
 
 	public Screen() {
         this.addKeyListener(KEY);
 
         // Testing Stuff:
-		//effect = new Snow(0.0, 0.0, frame.getWidth());
-		for(int i=0;i<effect.length;i++) {
-			effect[i] = new RainbowSnow(0.0, 0.0, 1920);
-		}
+		    // effect[0] = new RainbowSnow(0.0, 0.0, 1920);
+            effect[0] = new SplitWave(0.0, 0.0, 1920);
+            // effect[0] = new Snow(0.0, 0.0, 1920);
+            // effect[0] = new Fire(512.0, 512.0);
         // End Testing Stuff.
 	}
 
@@ -92,9 +91,8 @@ public class Screen extends Canvas implements Runnable {
     // Still not entirely sure what to use delta for.
 	private void update(final double DELTA) {
         // Testing Stuff:
-		//((Snow)effect).update();
 		for(Effect e : effect) {
-            ((RainbowSnow)e).update();
+            e.update();
 		}
         // End Testing Stuff.
 
@@ -120,7 +118,9 @@ public class Screen extends Canvas implements Runnable {
         g.clearRect(0, 0, getWidth(), getHeight());
 
         // Testing Stuff:
-        for(Effect e: effect) { ((RainbowSnow)e).render(g, e.getIsOval()); }
+        for(Effect e: effect) {
+            e.render(g, e.getIsOval());
+        }
         // End Testing Stuff.
         
         g.dispose();
