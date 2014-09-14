@@ -11,9 +11,9 @@ import java.awt.*;
  */
 public class SplitWave extends Effect {
     /** The length (x-axis) of the screen. */
-    private final double SCREEN_LENGTH;
+    private final double screenLength;
     /** An arbitrary number which controls how fast the rgb values are changed. */
-    private final double COLOR_CHANGE_CONSTANT = 3;
+    private static final double COLOR_CHANGE_CONSTANT = 3;
     /** An rgb value representing the color to apply to all new particles. */
     private double red = 255, green = 0, blue = 0;
     /** A boolean value representing which color will be used next. */
@@ -21,13 +21,13 @@ public class SplitWave extends Effect {
 
     /**
      * Constructs a new SplitWave particle effect.
-     * @param ORIGIN_X The origin, on the X-axis, of the effect.
-     * @param ORIGIN_Y The origin, on the Y-axis, of the effect.
-     * @param SCREEN_LENGTH The total length of the screen.
+     * @param originX The origin, on the X-axis, of the effect.
+     * @param originY The origin, on the Y-axis, of the effect.
+     * @param screenLength The total length of the screen.
      */
-    public SplitWave(final double ORIGIN_X, final double ORIGIN_Y, final double SCREEN_LENGTH) {
-        super(ORIGIN_X, ORIGIN_Y - 50, false);
-        this.SCREEN_LENGTH = SCREEN_LENGTH;
+    public SplitWave(final double originX, final double originY, final double screenLength) {
+        super(originX, originY - 50, true);
+        this.screenLength = screenLength;
     }
 
     /**
@@ -90,14 +90,14 @@ public class SplitWave extends Effect {
 
     /**
      * Creates a new Particle object.
-     * @param COLOR The color of the new particle
-     * @param SIZE The size, in pixels^2, of the new Particle.
-     * @param LIFE The number of movements before the new Particle decays.
+     * @param color The color of the new particle
+     * @param size The size, in pixels^2, of the new Particle.
+     * @param life The number of movements before the new Particle decays.
      */
-    public void newParticle(final Color COLOR, int SIZE, int LIFE) {
+    public void newParticle(final Color color, int size, int life) {
         boolean randBool = Math.random() >= 0.5;
         double randFloat = Math.random();
-        PARTICLES.add(new Particle((int)(randFloat * SCREEN_LENGTH + 1), super.ORIGIN_Y, randFloat * (randBool ? -2 : 2), randFloat * 2.5, 0.0050 * (randBool ? -1 : 1), 0.0, SIZE + (int)(randFloat * 8 + 1), LIFE + (int)(Math.random() * 800 + 1), COLOR));
+        PARTICLES.add(new Particle((int)(randFloat * screenLength + 1), super.ORIGIN_Y, randFloat * (randBool ? -2 : 2), randFloat * 2.5, 0.0050 * (randBool ? -1 : 1), 0.0, size + (int)(randFloat * 8 + 1), life + (int)(Math.random() * 800 + 1), color));
     }
 }
 
