@@ -8,15 +8,19 @@ import java.awt.Toolkit;
 /**
  * Represents a particle in 2D space.
  * @author Valkryst
- * --- Last Edit 14-September-2014
+ * --- Last Edit 13-October-2014
  */
 public class Particle {
     /** The dimensions of the users screen. */
 	private final static Dimension SCREEN_DIMENSIONS = Toolkit.getDefaultToolkit().getScreenSize();
-	/** The location of the particle on the X-axis. */
-	private double x;
-	/** The location of the particle on the Y-axis. */
-	private double y;
+	/** The currentlocation of the particle on the X-axis. */
+	private double xCurrent;
+	/** The current location of the particle on the Y-axis. */
+	private double yCurrent;
+    /** The previous location of the particle on the X-axis. */
+    private double xPrevious;
+    /** The previous location of the particle on the Y-axis. */
+    private double yPrevious;
 	/** The change in X, per update, of the particle. */
 	private double dx;
 	/** The change in Y, per update, of the particle. */
@@ -36,8 +40,8 @@ public class Particle {
 	
 	/**
 	 * Constructs a new particle with the specified data.
-	 * @param x The location of the particle on the X-axis.
-	 * @param y The location of the partivcle on the Y-axis.
+	 * @param xCurrent The current location of the particle on the X-axis.
+	 * @param yCurrent The currentlocation of the partivcle on the Y-axis.
 	 * @param dx The change in X, per update, of the particle.
 	 * @param dy The change in Y, per update, of the particle.
 	 * @param gravityX The gravitational pull to the left (negative) and right (positive) acting on this particle.
@@ -46,9 +50,11 @@ public class Particle {
 	 * @param life The remaining lifetime of the particle.
 	 * @param color The color of the particle.
 	 */
-	public Particle(final double x, final double y, final double dx, final double dy, final double gravityX, final double gravityY, final int size, final double life, final Color color) {
-		this.x = x;
-		this.y = y;
+	public Particle(final double xCurrent, final double yCurrent, final double dx, final double dy, final double gravityX, final double gravityY, final int size, final double life, final Color color) {
+		this.xCurrent = xCurrent;
+		this.yCurrent = yCurrent;
+        this.xPrevious = xCurrent;
+        this.yPrevious = yCurrent;
 		this.dx = dx;
 		this.dy = dy;
 		this.gravityX = gravityX;
@@ -63,21 +69,27 @@ public class Particle {
      * If the particle is off-screen then return true. If true is returned then
      * the calling effect's update() method delete the particle.
      *
-	 * Else updates the particle's position, change in x, change in y,
+	 * Else updates the particle's position, change in xCurrent, change in yCurrent,
 	 * remaining lifetime, and color.
 	 * @return Whether the particle is 'dead' or not.
 	 */
 	public boolean update() {
-		if(x > SCREEN_DIMENSIONS.width + 32 || x < -32 || y > SCREEN_DIMENSIONS.height + 32) {
+		if(xCurrent > SCREEN_DIMENSIONS.width + 32 || xCurrent < -32 || yCurrent > SCREEN_DIMENSIONS.height + 32) {
 			return true;
 		} else {
-			x += dx;
-			y += dy;
+            xPrevious = xCurrent;
+            yPrevious = yCurrent;
+			xCurrent += dx;
+			yCurrent += dy;
+
 			dx += gravityX;
 			dy += gravityY;
+
 			currentLife--;
+
             int alpha = (int)((currentLife/ totalLife)*100);
 			color = new Color(color.getRed(), color.getGreen(), color.getBlue(), (alpha >= 0 ? alpha : 0));
+
 			return currentLife <= 0;
 		}
 	}
@@ -91,9 +103,9 @@ public class Particle {
 		g.setColor(color);
 
 		if(isOval) {
-			g.fillOval((int) x - (SIZE / 2), (int) y - (SIZE / 2), SIZE, SIZE); //x-(size/2) & y-(size/2) make sure the particle is rendered at (x, y).
+			g.fillOval((int) xCurrent - (SIZE / 2), (int) yCurrent - (SIZE / 2), SIZE, SIZE); //xCurrent-(size/2) & yCurrent-(size/2) make sure the particle is rendered at (xCurrent, yCurrent).
 		} else {
-			g.fillRect((int) x - (SIZE / 2), (int) y - (SIZE / 2), SIZE, SIZE); //x-(size/2) & y-(size/2) make sure the particle is rendered at (x, y).
+			g.fillRect((int) xCurrent - (SIZE / 2), (int) yCurrent - (SIZE / 2), SIZE, SIZE); //xCurrent-(size/2) & yCurrent-(size/2) make sure the particle is rendered at (xCurrent, yCurrent).
 		}
 	}
 }

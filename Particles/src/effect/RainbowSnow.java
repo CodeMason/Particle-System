@@ -7,9 +7,12 @@ import java.awt.*;
 /**
  * Represents rainbow snow fall.
  * @author Valkryst
- * --- Last Edit 14-September-2014
+ * --- Last Edit 13-October-2014
  */
 public class RainbowSnow extends Effect {
+    /** The total number of particles that this effect will use. */
+    private static final short TOTAL_PARTICLES = 3000;
+
 	/** The length (x-axis) of the screen. */
 	private final double screenLength;
     /** An arbitrary number which controls how fast the rgb values are changed. */
@@ -26,9 +29,21 @@ public class RainbowSnow extends Effect {
      * @param screenLength The total length of the screen.
      */
 	public RainbowSnow(final double originX, final double originY, final double screenLength) {
-		super(originX, originY - 50, true);
+		super(originX, originY - 50, true, TOTAL_PARTICLES);
 		this.screenLength = screenLength;
 	}
+
+    /**
+     * Constructs a new RwinbowSnow particle effect.
+     * @param originX The origin, on the X-axis, of the effect.
+     * @param originY The origin, on the Y-axis, of the effect.
+     * @param screenLength The total length of the screen.
+     * @param totalParticles The total number of particles that this effect will use.
+     */
+    public RainbowSnow(final double originX, final double originY, final double screenLength, final short totalParticles) {
+        super(originX, originY - 50, true, totalParticles);
+        this.screenLength = screenLength;
+    }
 	
 	/**
 	 * Creates a new color using the current rgb values.
@@ -47,8 +62,12 @@ public class RainbowSnow extends Effect {
      *
 	 */
 	public void update() {
+        // After 10 update calls, create new particles.
+        // This is an arbitrary number, but it goes well with the
+        // update() method of the Effect class because it's divisible
+        // by 2.
 		if(counter == 10) {
-			for(int i=0;i<(Math.random() * 1800 + 1) + 120;i++) { newParticle(); }
+			for(int i=0;i<TOTAL_PARTICLES/100;i++) { newParticle(); }
 			counter = 0;
 		} else {
 			counter++;
@@ -91,17 +110,21 @@ public class RainbowSnow extends Effect {
 	 * Creates a new Particle object.
 	 */
 	public void newParticle() {
-        boolean randBool = Math.random() >= 0.5;
-        double xCoord = (int)(Math.random() * screenLength);
-        double yCoord = super.originY;
-        double dx = Math.random() * (randBool ? -2 : 2);
-        double dy = Math.random() * 2.5;
-        double gravityX = 0.0050 * (randBool ? -1 : 1);
-        double gravityY = 0.0;
-        int size = (int)(Math.random() * 16 + 1);
-        double life = (Math.random() * 800 + 1);
-        Color color = new Color((int)red, (int)green, (int)blue, 100);
+        short indexOfOpenPosition = super.canTakeNewParticles();
 
-        particles.add(new Particle(xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color));
+        if(indexOfOpenPosition != -1) {
+            boolean randBool = Math.random() >= 0.5;
+            double xCoord = (int)(Math.random() * screenLength);
+            double yCoord = super.originY;
+            double dx = Math.random() * (randBool ? -2 : 2);
+            double dy = Math.random() * 2.5;
+            double gravityX = 0.0050 * (randBool ? -1 : 1);
+            double gravityY = 0.0;
+            int size = (int)(Math.random() * 16 + 1);
+            double life = (Math.random() * 800 + 1);
+            Color color = new Color((int)red, (int)green, (int)blue, 100);
+
+            super.addParticle(new Particle(xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color), indexOfOpenPosition);
+        }
 	}
 }

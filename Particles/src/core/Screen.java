@@ -1,6 +1,7 @@
 package core;
 
-import effect.*;
+import effect.Effect;
+import effect.Snow;
 import input.InputKeyboard;
 import misc.Logger;
 
@@ -11,7 +12,7 @@ import java.awt.image.BufferStrategy;
 /**
  * Represents a screen on which to draw.
  * @author Valkryst
- * --- Last Edit 14-September-2014
+ * --- Last Edit 13-October-2014
  */
 public class Screen extends Canvas implements Runnable {
     private Thread gameThread;
@@ -29,10 +30,11 @@ public class Screen extends Canvas implements Runnable {
 
         // Testing Stuff:
             // effect[0] = new RainbowSnow(0.0, 0.0, 1920);
-            effect[0] = new SplitWave(0.0, 0.0, 1920);
-            // effect[0] = new Snow(0.0, 0.0, 1920);
+            // effect[0] = new SplitWave(0.0, 0.0, 1920);
+            effect[0] = new Snow(0.0, 0.0, 1920);
             // effect[0] = new Fire(512.0, 512.0);
         // End Testing Stuff.
+
 	}
 
     public synchronized void start() {
@@ -94,7 +96,7 @@ public class Screen extends Canvas implements Runnable {
 		for(Effect e : effect) {
             e.update();
 		}
-        // End Testing Stuff.
+        // End Testing Stuff
 
 		if(KEY.isKeyPressed(KeyEvent.VK_ESCAPE) || KEY.isKeyPressed(KeyEvent.VK_ALT) && KEY.isKeyPressed(KeyEvent.VK_F4)) {
 			isProgramRunning = false;
@@ -104,7 +106,7 @@ public class Screen extends Canvas implements Runnable {
 
 	// When called this updates the screen.
 	private void render() {
-        try {
+       // try {
             BufferStrategy BS = getBufferStrategy();
 
             // Forces the canvas to use triple buffering.
@@ -118,17 +120,15 @@ public class Screen extends Canvas implements Runnable {
             Graphics g = BS.getDrawGraphics();
             g.clearRect(0, 0, getWidth(), getHeight());
 
-            // Testing Stuff:
-            for(Effect e: effect) {
-                e.render(g, e.getIsOval());
+            for(Effect e : effect) {
+                e.render(g, false);
             }
-            // End Testing Stuff.
 
             g.dispose();
             BS.show();
-        } catch(Exception e) {
-            Logger.writeLog("An exception has occured in the render() method of the Screen class. This can sometimes happen on multi-monitor displays. Try restarting the program.", Logger.LOG_TYPE_ERROR);
-            System.exit(1);
-        }
+       // } catch(Exception e) {
+        //    Logger.writeLog("An exception has occured in the render() method of the Screen class. This can sometimes happen on multi-monitor displays. Try restarting the program.", Logger.LOG_TYPE_ERROR);
+         //   System.exit(1);
+        //}
 	}
 }
