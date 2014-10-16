@@ -13,13 +13,13 @@ public class Effect {
 	/** A collection of particles that make up the snow.*/
 	protected final Particle[] particles;
 	/** The origin of this snow on the X-axis.*/
-	protected final double originX;
+	protected final float originX;
 	/** The origin of this snow on the Y-axis.*/
-	protected final double originY;
+	protected final float originY;
 	/** Whether or not to render the particles as ovals. If not then render as squares. Ovals are extremely CPU intensive for large effects*/
 	protected final boolean isOval;
     /** Counts the number of update calls since the last creation of new particles. */
-	protected int counter = 0;
+	protected byte counter = 0;
 
     /**
      * Basic constructor for an effect.
@@ -28,7 +28,7 @@ public class Effect {
      * @param isOval Whether or not to render the particles as ovals. If not then they are rendered as squares.
      * @param totalParticles The total number of particles that this effect will be allowed to use.
      */
-	public Effect(final double originX, final double originY, final boolean isOval, final short totalParticles) {
+	public Effect(final float originX, final float originY, final boolean isOval, final short totalParticles) {
 		this.originX = originX;
 		this.originY = originY;
 		this.isOval = isOval;
@@ -75,7 +75,7 @@ public class Effect {
 	 * Renders the snow to the screen.
 	 * @param g Graphics object with which to draw.
 	 */
-	public void render(final Graphics g, final boolean isOval) {
+	public void render(final Graphics g) {
 		((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         for(Particle p : particles) {

@@ -14,11 +14,11 @@ public class RainbowSnow extends Effect {
     private static final short TOTAL_PARTICLES = 3000;
 
 	/** The length (x-axis) of the screen. */
-	private final double screenLength;
+	private final float screenLength;
     /** An arbitrary number which controls how fast the rgb values are changed. */
-	private static final double COLOR_CHANGE_CONSTANT = 0.250;
+	private static final float COLOR_CHANGE_CONSTANT = 0.250f;
     /** An rgb value representing the color to apply to all new particles. */
-	private double red = 255, green = 0, blue = 0;
+	private float red = 255, green = 0, blue = 0;
     /** A boolean value representing which color will be used next. */
 	private boolean changingToRed = false, changingToGreen = true, changingToBlue = false;
 
@@ -28,8 +28,8 @@ public class RainbowSnow extends Effect {
      * @param originY The origin, on the Y-axis, of the effect.
      * @param screenLength The total length of the screen.
      */
-	public RainbowSnow(final double originX, final double originY, final double screenLength) {
-		super(originX, originY - 50, true, TOTAL_PARTICLES);
+	public RainbowSnow(final float originX, final float originY, final short screenLength) {
+		super(originX, originY - 50, false, TOTAL_PARTICLES);
 		this.screenLength = screenLength;
 	}
 
@@ -40,8 +40,8 @@ public class RainbowSnow extends Effect {
      * @param screenLength The total length of the screen.
      * @param totalParticles The total number of particles that this effect will use.
      */
-    public RainbowSnow(final double originX, final double originY, final double screenLength, final short totalParticles) {
-        super(originX, originY - 50, true, totalParticles);
+    public RainbowSnow(final float originX, final float originY, final float screenLength, final short totalParticles) {
+        super(originX, originY - 50, false, totalParticles);
         this.screenLength = screenLength;
     }
 	
@@ -114,14 +114,14 @@ public class RainbowSnow extends Effect {
 
         if(indexOfOpenPosition != -1) {
             boolean randBool = Math.random() >= 0.5;
-            double xCoord = (int)(Math.random() * screenLength);
-            double yCoord = super.originY;
-            double dx = Math.random() * (randBool ? -2 : 2);
-            double dy = Math.random() * 2.5;
-            double gravityX = 0.0050 * (randBool ? -1 : 1);
-            double gravityY = 0.0;
-            int size = (int)(Math.random() * 16 + 1);
-            double life = (Math.random() * 800 + 1);
+            float xCoord = (float)(Math.random() * screenLength);
+            float yCoord = super.originY;
+            float dx = (float)Math.random() * (randBool ? -2f : 2f);
+            float dy = (float)Math.random() * 2.5f;
+            float gravityX = 0.0050f * (randBool ? -1f : 1f);
+            float gravityY = 0.0f;
+            byte size = (byte)(Math.random() * 16 + 1);
+            short life = (short)(Math.random() * 800 + 1);
             Color color = new Color((int)red, (int)green, (int)blue, 100);
 
             super.addParticle(new Particle(xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color), indexOfOpenPosition);

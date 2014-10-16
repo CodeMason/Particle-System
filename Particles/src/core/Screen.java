@@ -1,7 +1,6 @@
 package core;
 
-import effect.Effect;
-import effect.Snow;
+import effect.*;
 import input.InputKeyboard;
 import misc.Logger;
 
@@ -29,10 +28,10 @@ public class Screen extends Canvas implements Runnable {
         this.addKeyListener(KEY);
 
         // Testing Stuff:
-            // effect[0] = new RainbowSnow(0.0, 0.0, 1920);
-            // effect[0] = new SplitWave(0.0, 0.0, 1920);
-            effect[0] = new Snow(0.0, 0.0, 1920);
-            // effect[0] = new Fire(512.0, 512.0);
+           // effect[0] = new RainbowSnow(0.0f, 0.0f, (short)1920);
+           effect[0] = new SplitWave(0.0f, 0.0f, (short)1920);
+           // effect[0] = new Snow(0.0f, 0.0f, (short)1920);
+           // effect[0] = new Fire(512.0f, 512.0f);
         // End Testing Stuff.
 
 	}
@@ -121,7 +120,7 @@ public class Screen extends Canvas implements Runnable {
             g.clearRect(0, 0, getWidth(), getHeight());
 
             for(Effect e : effect) {
-                e.render(g, false);
+                e.render(g);
             }
 
             g.dispose();

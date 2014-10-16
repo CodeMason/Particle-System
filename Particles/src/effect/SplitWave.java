@@ -14,11 +14,11 @@ public class SplitWave extends Effect {
     private static final short TOTAL_PARTICLES = 10000;
 
     /** The length (x-axis) of the screen. */
-    private final double screenLength;
+    private final float screenLength;
     /** An arbitrary number which controls how fast the rgb values are changed. */
-    private static final double COLOR_CHANGE_CONSTANT = 3;
+    private static final float COLOR_CHANGE_CONSTANT = 3f;
     /** An rgb value representing the color to apply to all new particles. */
-    private double red = 255, green = 0, blue = 0;
+    private float red = 255, green = 0, blue = 0;
     /** A boolean value representing which color will be used next. */
     private boolean changingToRed = false, changingToGreen = true, changingToBlue = false;
 
@@ -28,8 +28,8 @@ public class SplitWave extends Effect {
      * @param originY The origin, on the Y-axis, of the effect.
      * @param screenLength The total length of the screen.
      */
-    public SplitWave(final double originX, final double originY, final double screenLength) {
-        super(originX, originY - 50, true, TOTAL_PARTICLES);
+    public SplitWave(final float originX, final float originY, final short screenLength) {
+        super(originX, originY - 50, false, TOTAL_PARTICLES);
         this.screenLength = screenLength;
     }
 
@@ -50,14 +50,12 @@ public class SplitWave extends Effect {
      *
      */
     public void update() {
-        Color c = new Color((int)red, (int)green, (int)blue, 100);
-
         // After 10 update calls, create new particles.
         // This is an arbitrary number, but it goes well with the
         // update() method of the Effect class because it's divisible
         // by 2.
         if(counter == 10) {
-            for(int i=0;i<TOTAL_PARTICLES/100;i++) { newParticle(c, (int)(Math.floor(Math.random() * 6) + 8), 40); }
+            for(short i=0;i<TOTAL_PARTICLES/100;i++) { newParticle(); }
             counter = 0;
         } else {
             counter++;
@@ -98,18 +96,25 @@ public class SplitWave extends Effect {
 
     /**
      * Creates a new Particle object.
-     * @param color The color of the new particle
-     * @param size The size, in pixels^2, of the new Particle.
-     * @param life The number of movements before the new Particle decays.
      */
-    public void newParticle(final Color color, int size, int life) {
+    public void newParticle() {
         short indexOfOpenPosition = super.canTakeNewParticles();
 
         if(indexOfOpenPosition != -1) {
             boolean randBool = Math.random() >= 0.5;
-            double randFloat = Math.random();
+            float randFloat = (float)Math.random();
 
-            super.addParticle(new Particle((int) (randFloat * screenLength + 1), super.originY, randFloat * (randBool ? -2 : 2), randFloat * 2.5, 0.0050 * (randBool ? -1 : 1), 0.0, size + (int) (randFloat * 8 + 1), life + (int) (Math.random() * 800 + 1), color), indexOfOpenPosition);
+            float xCoord = randFloat * screenLength + 1;
+            float yCoord = super.originY;
+            float dx = randFloat * (randBool ? -2f : 2f);
+            float dy = randFloat * 2.5f;
+            float gravityX = 0.0050f * (randBool ? -1f : 1f);
+            float gravityY = 0.0f;
+            byte size = (byte)(Math.floor(Math.random() * 6) + 8);
+            short life = (short)(Math.random() * 800 + 1);
+            Color color = new Color((int)red, (int)green, (int)blue, 100);
+
+            super.addParticle(new Particle(xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color), indexOfOpenPosition);
         }
     }
 }

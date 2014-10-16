@@ -14,27 +14,27 @@ public class Particle {
     /** The dimensions of the users screen. */
 	private final static Dimension SCREEN_DIMENSIONS = Toolkit.getDefaultToolkit().getScreenSize();
 	/** The currentlocation of the particle on the X-axis. */
-	private double xCurrent;
+	private float xCurrent;
 	/** The current location of the particle on the Y-axis. */
-	private double yCurrent;
+	private float yCurrent;
     /** The previous location of the particle on the X-axis. */
-    private double xPrevious;
+    private float xPrevious;
     /** The previous location of the particle on the Y-axis. */
-    private double yPrevious;
+    private float yPrevious;
 	/** The change in X, per update, of the particle. */
-	private double dx;
+	private float dx;
 	/** The change in Y, per update, of the particle. */
-	private double dy;
+	private float dy;
 	/** The gravitational pull to the left (negative) and right (positive) acting on this particle. */
-	private final double gravityX;
+	private final float gravityX;
 	/** The gravitational pull to the up (negative) and down (positive) acting on this particle. */
-	private final double gravityY;
+	private final float gravityY;
 	/** The size in pixels^2 of the particle. */
-	private final int SIZE;
+	private final byte SIZE;
 	/** The remaining lifetime of the particle. */
-	private double currentLife;
+	private float currentLife;
 	/** The total lifetime of the particle. */
-	private final double totalLife;
+	private final short totalLife;
 	/** The color of the particle. */
 	private Color color;
 	
@@ -50,7 +50,7 @@ public class Particle {
 	 * @param life The remaining lifetime of the particle.
 	 * @param color The color of the particle.
 	 */
-	public Particle(final double xCurrent, final double yCurrent, final double dx, final double dy, final double gravityX, final double gravityY, final int size, final double life, final Color color) {
+	public Particle(final float xCurrent, final float yCurrent, final float dx, final float dy, final float gravityX, final float gravityY, final byte size, final short life, final Color color) {
 		this.xCurrent = xCurrent;
 		this.yCurrent = yCurrent;
         this.xPrevious = xCurrent;

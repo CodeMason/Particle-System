@@ -27,7 +27,7 @@ public class Fire extends Effect {
      * @param originX The origin, on the X-axis, of the effect.
      * @param originY The origin, on the Y-axis, of the effect.
      */
-	public Fire(final double originX, final double originY) {
+	public Fire(final float originX, final float originY) {
 		super(originX, originY, false, TOTAL_PARTICLES);
 	}
 	
@@ -43,10 +43,10 @@ public class Fire extends Effect {
         // by 2.
 		if(counter == 20) {
             // Create X particles of each color. These numbers are all arbitrary.
-			for(int i=0;i<10;i++) { newParticle(REDISH_BROWN, 150, 19); }
-			for(int i=0;i<7;i++) { newParticle(DARK_ORANGE, 125, 16); }
-			for(int i=0;i<5;i++) { newParticle(GOLD, 100, 13); }
-			for(int i=0;i<2;i++) { newParticle(YELLOW, 50, 10); }
+			for(int i=0;i<10;i++) { newParticle(REDISH_BROWN, (short)150, (short)19); }
+			for(int i=0;i<7;i++) { newParticle(DARK_ORANGE, (short)125, (short)16); }
+			for(int i=0;i<5;i++) { newParticle(GOLD, (short)100, (short)13); }
+			for(int i=0;i<2;i++) { newParticle(YELLOW, (short)50, (short)10); }
 			counter = 0;
 		} else {
 			counter++;
@@ -60,20 +60,19 @@ public class Fire extends Effect {
 	 * Creates a new Particle object.
 	 * @param life The number of movements before the new Particle decays.
 	 */
-	public void newParticle(final Color color, final int life, final int maxAxisMovement) {
+	public void newParticle(final Color color, final short life, final short maxAxisMovement) {
         short indexOfOpenPosition = super.canTakeNewParticles();
 
         if(indexOfOpenPosition != -1) {
-
             boolean randBool = Math.random() >= 0.5;
 
-            double xCoord = super.originX + (Math.random() * maxAxisMovement) * (randBool ? -1 : 1);
-            double yCoord = super.originY;
-            double dx = Math.random() / 4;
-            double dy = Math.random() * -1;
-            double gravityX = 0.0;
-            double gravityY = 0.0015 * (randBool ? 1 : -1);
-            int size = 4 + (int)(Math.random() * 10);
+            float xCoord = super.originX + (float)(Math.random() * maxAxisMovement) * (randBool ? -1f : 1f);
+            float yCoord = super.originY;
+            float dx = (float)Math.random() / 4f;
+            float dy = (float)Math.random() * -1f;
+            float gravityX = 0.0f;
+            float gravityY = 0.0015f * (randBool ? 1f : -1f);
+            byte size = (byte)(4 + (Math.random() * 10));
 
             super.addParticle(new Particle(xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color), indexOfOpenPosition);
         }
