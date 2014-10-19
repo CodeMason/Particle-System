@@ -17,10 +17,6 @@ public class Particle {
 	private float xCurrent;
 	/** The current location of the particle on the Y-axis. */
 	private float yCurrent;
-    /** The previous location of the particle on the X-axis. */
-    private float xPrevious;
-    /** The previous location of the particle on the Y-axis. */
-    private float yPrevious;
 	/** The change in X, per update, of the particle. */
 	private float dx;
 	/** The change in Y, per update, of the particle. */
@@ -53,8 +49,6 @@ public class Particle {
 	public Particle(final float xCurrent, final float yCurrent, final float dx, final float dy, final float gravityX, final float gravityY, final byte size, final short life, final Color color) {
 		this.xCurrent = xCurrent;
 		this.yCurrent = yCurrent;
-        this.xPrevious = xCurrent;
-        this.yPrevious = yCurrent;
 		this.dx = dx;
 		this.dy = dy;
 		this.gravityX = gravityX;
@@ -77,8 +71,6 @@ public class Particle {
 		if(xCurrent > SCREEN_DIMENSIONS.width + 32 || xCurrent < -32 || yCurrent > SCREEN_DIMENSIONS.height + 32) {
 			return true;
 		} else {
-            xPrevious = xCurrent;
-            yPrevious = yCurrent;
 			xCurrent += dx;
 			yCurrent += dy;
 
