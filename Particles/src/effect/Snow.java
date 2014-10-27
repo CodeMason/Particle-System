@@ -7,7 +7,7 @@ import java.awt.*;
 /**
  * Represents snow fall.
  * @author Valkryst
- * --- Last Edit 13-October-2014
+ * --- Last Edit 27-October-2014
  */
 public class Snow extends Effect {
     /** The total number of particles that this effect will use. */

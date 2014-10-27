@@ -21,8 +21,9 @@ public class Driver {
         screen.setVisible(true);
         screen.setBackground(Color.black);
         frame.add(screen);
-
         frame.setVisible(true);
+
+        screen.setEffect(frame.getSize());
 
         screen.start();
 	}
