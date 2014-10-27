@@ -13,8 +13,6 @@ public class RainbowSnow extends Effect {
     /** The total number of particles that this effect will use. */
     private static final short TOTAL_PARTICLES = 3000;
 
-	/** The length (x-axis) of the screen. */
-	private final float screenLength;
     /** An arbitrary number which controls how fast the rgb values are changed. */
 	private static final float COLOR_CHANGE_CONSTANT = 0.250f;
     /** An rgb value representing the color to apply to all new particles. */
@@ -27,11 +25,9 @@ public class RainbowSnow extends Effect {
      * @param screenDimensions The dimensions for the screen on which all particles are to be drawn.
      * @param originX The origin, on the X-axis, of the effect.
      * @param originY The origin, on the Y-axis, of the effect.
-     * @param screenLength The total length of the screen.
      */
-	public RainbowSnow(final Dimension screenDimensions, final float originX, final float originY, final short screenLength) {
+	public RainbowSnow(final Dimension screenDimensions, final float originX, final float originY) {
 		super(screenDimensions, originX, originY - 50, false, TOTAL_PARTICLES);
-		this.screenLength = screenLength;
 	}
 
     /**
@@ -39,12 +35,10 @@ public class RainbowSnow extends Effect {
      * @param screenDimensions The dimensions for the screen on which all particles are to be drawn.
      * @param originX The origin, on the X-axis, of the effect.
      * @param originY The origin, on the Y-axis, of the effect.
-     * @param screenLength The total length of the screen.
      * @param totalParticles The total number of particles that this effect will use.
      */
-    public RainbowSnow(final Dimension screenDimensions, final float originX, final float originY, final float screenLength, final short totalParticles) {
+    public RainbowSnow(final Dimension screenDimensions, final float originX, final float originY, final short totalParticles) {
         super(screenDimensions, originX, originY - 50, false, totalParticles);
-        this.screenLength = screenLength;
     }
 	
 	/**
@@ -116,7 +110,7 @@ public class RainbowSnow extends Effect {
 
         if(indexOfOpenPosition != -1) {
             boolean randBool = Math.random() >= 0.5;
-            float xCoord = (float)(Math.random() * screenLength);
+            float xCoord = (float)(Math.random() * super.screenDimensions.width);
             float yCoord = super.originY;
             float dx = (float)Math.random() * (randBool ? -2f : 2f);
             float dy = (float)Math.random() * 2.5f;
