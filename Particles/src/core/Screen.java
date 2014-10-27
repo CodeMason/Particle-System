@@ -28,10 +28,10 @@ public class Screen extends Canvas implements Runnable {
         this.addKeyListener(KEY);
 
         // Testing Stuff:
-           // effect[0] = new RainbowSnow(0.0f, 0.0f, (short)1920);
-           effect[0] = new SplitWave(0.0f, 0.0f, (short)1920);
-           // effect[0] = new Snow(0.0f, 0.0f, (short)1920);
-           // effect[0] = new Fire(512.0f, 512.0f);
+           // effect[0] = new RainbowSnow(this.getSize(), 0.0f, 0.0f, (short)1920);
+           effect[0] = new SplitWave(this.getSize(), 0.0f, 0.0f, (short)1920);
+           // effect[0] = new Snow(this.getSize(), 0.0f, 0.0f, (short)1920);
+           // effect[0] = new Fire(this.getSize(), 512.0f, 512.0f);
         // End Testing Stuff.
 
 	}
