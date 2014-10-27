@@ -109,11 +109,6 @@ public class Effect {
         particles[index] = newParticle;
     }
 
-    /** @return The array of all particles that make-up the Effect. */
-    public Particle[] getParticles() {
-        return particles;
-    }
-
     /**
      * Sets the screen dimensions, for the Effect, to the specified dimensions, and then
      * updates all of the particles in the Effect to work with the new dimensions.
