@@ -24,12 +24,13 @@ public class SplitWave extends Effect {
 
     /**
      * Constructs a new SplitWave particle effect.
+     * @param screenDimensions The dimensions for the screen on which all particles are to be drawn.
      * @param originX The origin, on the X-axis, of the effect.
      * @param originY The origin, on the Y-axis, of the effect.
      * @param screenLength The total length of the screen.
      */
-    public SplitWave(final float originX, final float originY, final short screenLength) {
-        super(originX, originY - 50, false, TOTAL_PARTICLES);
+    public SplitWave(final Dimension screenDimensions, final float originX, final float originY, final short screenLength) {
+        super(screenDimensions, originX, originY - 50, false, TOTAL_PARTICLES);
         this.screenLength = screenLength;
     }
 

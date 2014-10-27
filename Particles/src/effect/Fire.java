@@ -24,11 +24,12 @@ public class Fire extends Effect {
 
     /**
      * Constructs a new Snow particle effect.
+     * @param screenDimensions The dimensions for the screen on which all particles are to be drawn.
      * @param originX The origin, on the X-axis, of the effect.
      * @param originY The origin, on the Y-axis, of the effect.
      */
-	public Fire(final float originX, final float originY) {
-		super(originX, originY, false, TOTAL_PARTICLES);
+	public Fire(final Dimension screenDimensions, final float originX, final float originY) {
+		super(screenDimensions, originX, originY, false, TOTAL_PARTICLES);
 	}
 	
 	/**

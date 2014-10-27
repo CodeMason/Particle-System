@@ -10,6 +10,8 @@ import java.awt.*;
  * --- Last Edit 13-October-2014
  */
 public class Effect {
+    /** The dimensions of the canvas on which the effect is to be rendered. */
+    private static Dimension screenDimensions;
 	/** A collection of particles that make up the snow.*/
 	protected final Particle[] particles;
 	/** The origin of this snow on the X-axis.*/
@@ -23,12 +25,14 @@ public class Effect {
 
     /**
      * Basic constructor for an effect.
+     * @param screenDimensions The dimensions for the screen on which all particles are to be drawn.
      * @param originX The origin, on the X-axis, of the effect.
      * @param originY The origin, on the Y-axis, of the effect.
      * @param isOval Whether or not to render the particles as ovals. If not then they are rendered as squares.
      * @param totalParticles The total number of particles that this effect will be allowed to use.
      */
-	public Effect(final float originX, final float originY, final boolean isOval, final short totalParticles) {
+	public Effect(final Dimension screenDimensions, final float originX, final float originY, final boolean isOval, final short totalParticles) {
+        this.screenDimensions = screenDimensions;
 		this.originX = originX;
 		this.originY = originY;
 		this.isOval = isOval;
@@ -64,7 +68,7 @@ public class Effect {
         // Update the specified set of particles.
         for(short i=startingIndex;i<endingIndex;i++) {
             if(particles[i] != null) {
-                if(particles[i].update()) {
+                if(particles[i].update(screenDimensions)) {
                     particles[i] = null;
                 }
             }
@@ -85,6 +89,7 @@ public class Effect {
         }
 	}
 
+    /** @return Whether-or-not the effect can hold any more particles. */
     public short canTakeNewParticles() {
         for(short i=0;i<particles.length;i++) {
             if(particles[i] == null) {
@@ -94,8 +99,35 @@ public class Effect {
         return -1;
     }
 
+    /**
+     * Adds the specified particle to the array of particles at the
+     * specified index.
+     * @param newParticle The particle to add to the effect.
+     * @param index The index, of the particle array, where the particle is to be added.
+     */
     public void addParticle(final Particle newParticle, final short index) {
         particles[index] = newParticle;
+    }
+
+    /** @return The array of all particles that make-up the Effect. */
+    public Particle[] getParticles() {
+        return particles;
+    }
+
+    /**
+     * Sets the screen dimensions, for the Effect, to the specified dimensions, and then
+     * updates all of the particles in the Effect to work with the new dimensions.
+     *
+     * @param newScreenDimensions The new screen dimensions for the screen on which the particle is to be drawn.
+     * @param particles An array containing all of the particles of an Effect.
+     */
+    public static void setScreenDimensions(final Dimension newScreenDimensions, final Particle[] particles) {
+        // Update all particles to work properly with the new screen dimensions.
+        for(Particle p : particles) {
+            p.updateForNewScreenDimensions(screenDimensions, newScreenDimensions);
+        }
+
+        screenDimensions = newScreenDimensions;
     }
 	
 	/** @return Whether or not to render the particles as ovals. If not then render as squares. */

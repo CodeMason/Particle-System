@@ -24,24 +24,26 @@ public class RainbowSnow extends Effect {
 
     /**
      * Constructs a new RwinbowSnow particle effect.
+     * @param screenDimensions The dimensions for the screen on which all particles are to be drawn.
      * @param originX The origin, on the X-axis, of the effect.
      * @param originY The origin, on the Y-axis, of the effect.
      * @param screenLength The total length of the screen.
      */
-	public RainbowSnow(final float originX, final float originY, final short screenLength) {
-		super(originX, originY - 50, false, TOTAL_PARTICLES);
+	public RainbowSnow(final Dimension screenDimensions, final float originX, final float originY, final short screenLength) {
+		super(screenDimensions, originX, originY - 50, false, TOTAL_PARTICLES);
 		this.screenLength = screenLength;
 	}
 
     /**
      * Constructs a new RwinbowSnow particle effect.
+     * @param screenDimensions The dimensions for the screen on which all particles are to be drawn.
      * @param originX The origin, on the X-axis, of the effect.
      * @param originY The origin, on the Y-axis, of the effect.
      * @param screenLength The total length of the screen.
      * @param totalParticles The total number of particles that this effect will use.
      */
-    public RainbowSnow(final float originX, final float originY, final float screenLength, final short totalParticles) {
-        super(originX, originY - 50, false, totalParticles);
+    public RainbowSnow(final Dimension screenDimensions, final float originX, final float originY, final float screenLength, final short totalParticles) {
+        super(screenDimensions, originX, originY - 50, false, totalParticles);
         this.screenLength = screenLength;
     }
 	

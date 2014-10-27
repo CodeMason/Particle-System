@@ -8,8 +8,6 @@ import java.awt.*;
  * --- Last Edit 27-October-2014
  */
 public class Particle {
-    /** The dimensions of the canvas on which the effect is to be rendered. */
-    private static Dimension screenDimensions;
     /** The currentlocation of the effect on the X-axis. */
     private float xCurrent;
     /** The current location of the effect on the Y-axis. */
@@ -33,7 +31,6 @@ public class Particle {
 
     /**
      * Constructs a new effect with the specified data.
-     * @param dimensions The dimensions for the screen on which all particles are to be drawn.
      * @param xCurrent The current location of the effect on the X-axis.
      * @param yCurrent The currentlocation of the partivcle on the Y-axis.
      * @param dx The change in X, per update, of the effect.
@@ -44,8 +41,7 @@ public class Particle {
      * @param life The remaining lifetime of the effect.
      * @param color The color of the effect.
      */
-    public Particle(final Dimension dimensions, final float xCurrent, final float yCurrent, final float dx, final float dy, final float gravityX, final float gravityY, final byte size, final short life, final Color color) {
-        screenDimensions = dimensions;
+    public Particle(final float xCurrent, final float yCurrent, final float dx, final float dy, final float gravityX, final float gravityY, final byte size, final short life, final Color color) {
         this.xCurrent = xCurrent;
         this.yCurrent = yCurrent;
         this.dx = dx;
@@ -62,13 +58,14 @@ public class Particle {
      * Updates, nearly, every variable of the effect to, hopefully,
      * match-up with the new screen dimensions that the effect is to
      * be drawn onto.
-     * @param dimensions The new screen dimensions for the screen on which all particles are to be drawn.
+     * @param currentScreenDimensions The current screen dimensions for the screen on which the particle is to be drawn.
+     * @param newScreenDimensions The new screen dimensions for the screen on which the particle is to be drawn.
      */
-    private void updateForNewScreenDimensions(final Dimension dimensions) {
-        short widthCurrent = (short)screenDimensions.width;
-        short heightCurrent = (short)screenDimensions.height;
-        short widthNew = (short)dimensions.width;
-        short heightNew = (short)dimensions.height;
+    public void updateForNewScreenDimensions(final Dimension currentScreenDimensions, final Dimension newScreenDimensions) {
+        short widthCurrent = (short)currentScreenDimensions.width;
+        short heightCurrent = (short)currentScreenDimensions.height;
+        short widthNew = (short)newScreenDimensions.width;
+        short heightNew = (short)newScreenDimensions.height;
 
         // Calculate the % difference between the widths and heights.
         short widthDifference = (short)(widthCurrent - widthNew);
@@ -99,9 +96,11 @@ public class Particle {
      *
      * Else updates the effect's position, change in xCurrent, change in yCurrent,
      * remaining lifetime, and color.
+     *
+     * @param screenDimensions The screen dimensions for the screen on which the particle is to be drawn.
      * @return Whether the effect is 'dead' or not.
      */
-    public boolean update() {
+    public boolean update(final Dimension screenDimensions) {
         if(xCurrent > screenDimensions.width + 32 || xCurrent < -32 || yCurrent > screenDimensions.height + 32) {
             return true;
         } else {
@@ -132,21 +131,6 @@ public class Particle {
             g.fillOval((int) xCurrent - (size / 2), (int) yCurrent - (size / 2), size, size); //xCurrent-(size/2) & yCurrent-(size/2) make sure the effect is rendered at (xCurrent, yCurrent).
         } else {
             g.fillRect((int) xCurrent - (size / 2), (int) yCurrent - (size / 2), size, size); //xCurrent-(size/2) & yCurrent-(size/2) make sure the effect is rendered at (xCurrent, yCurrent).
-        }
-    }
-
-    /**
-     * Sets the screen dimensions, for all particles, to the specified dimensions, and then
-     * updates all of the particles in the specified array to work with the new dimensions.
-     * @param dimensions The new screen dimensions for the screen on which all particles are to be drawn.
-     * @param particles An array containing all of the particles of an Effect.
-     */
-    public static void setScreenDimensions(final Dimension dimensions, final Particle[] particles) {
-        screenDimensions = dimensions;
-
-        // Update all particles to work properly with the new screen dimensions.
-        for(Particle p : particles) {
-            p.updateForNewScreenDimensions(dimensions);
         }
     }
 }
