@@ -11,7 +11,7 @@ import java.awt.*;
  */
 public class Effect {
     /** The dimensions of the canvas on which the effect is to be rendered. */
-    private static Dimension screenDimensions;
+    protected Dimension screenDimensions;
 	/** A collection of particles that make up the snow.*/
 	protected final Particle[] particles;
 	/** The origin of this snow on the X-axis.*/
@@ -121,7 +121,7 @@ public class Effect {
      * @param newScreenDimensions The new screen dimensions for the screen on which the particle is to be drawn.
      * @param particles An array containing all of the particles of an Effect.
      */
-    public static void setScreenDimensions(final Dimension newScreenDimensions, final Particle[] particles) {
+    public void setScreenDimensions(final Dimension newScreenDimensions, final Particle[] particles) {
         // Update all particles to work properly with the new screen dimensions.
         for(Particle p : particles) {
             p.updateForNewScreenDimensions(screenDimensions, newScreenDimensions);
