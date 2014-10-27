@@ -23,7 +23,7 @@ public class Particle {
     /** The size in pixels^2 of the effect. */
     private byte size;
     /** The remaining lifetime of the effect. */
-    private short currentLife;
+    private float currentLife;
     /** The total lifetime of the effect. */
     private short totalLife;
     /** The color of the effect. */
@@ -112,7 +112,7 @@ public class Particle {
 
             currentLife--;
 
-            int alpha = (currentLife / totalLife) * 100;
+            int alpha = (int)((currentLife / totalLife) * 100);
             color = new Color(color.getRed(), color.getGreen(), color.getBlue(), (alpha >= 0 ? alpha : 0));
 
             return currentLife <= 0;
