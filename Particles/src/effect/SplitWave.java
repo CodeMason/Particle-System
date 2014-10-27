@@ -13,8 +13,6 @@ public class SplitWave extends Effect {
     /** The total number of particles that this effect will use. */
     private static final short TOTAL_PARTICLES = 10000;
 
-    /** The length (x-axis) of the screen. */
-    private final float screenLength;
     /** An arbitrary number which controls how fast the rgb values are changed. */
     private static final float COLOR_CHANGE_CONSTANT = 3f;
     /** An rgb value representing the color to apply to all new particles. */
@@ -27,11 +25,9 @@ public class SplitWave extends Effect {
      * @param screenDimensions The dimensions for the screen on which all particles are to be drawn.
      * @param originX The origin, on the X-axis, of the effect.
      * @param originY The origin, on the Y-axis, of the effect.
-     * @param screenLength The total length of the screen.
      */
-    public SplitWave(final Dimension screenDimensions, final float originX, final float originY, final short screenLength) {
+    public SplitWave(final Dimension screenDimensions, final float originX, final float originY) {
         super(screenDimensions, originX, originY - 50, false, TOTAL_PARTICLES);
-        this.screenLength = screenLength;
     }
 
     /**
@@ -105,7 +101,7 @@ public class SplitWave extends Effect {
             boolean randBool = Math.random() >= 0.5;
             float randFloat = (float)Math.random();
 
-            float xCoord = randFloat * screenLength + 1;
+            float xCoord = randFloat * super.screenDimensions.width + 1;
             float yCoord = super.originY;
             float dx = randFloat * (randBool ? -2f : 2f);
             float dy = randFloat * 2.5f;
