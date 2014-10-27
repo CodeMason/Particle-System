@@ -13,19 +13,14 @@ public class Snow extends Effect {
     /** The total number of particles that this effect will use. */
     private static final short TOTAL_PARTICLES = 5000;
 
-	/** The length (x-axis) of the screen. */
-	private final short screenLength;
-
     /**
      * Constructs a new Snow particle effect.
      * @param screenDimensions The dimensions for the screen on which all particles are to be drawn.
      * @param originX The origin, on the X-axis, of the effect.
      * @param originY The origin, on the Y-axis, of the effect.
-     * @param screenLength The total length of the screen.
      */
-	public Snow(final Dimension screenDimensions, final float originX, final float originY, final short screenLength) {
+	public Snow(final Dimension screenDimensions, final float originX, final float originY) {
 		super(screenDimensions, originX, originY - 50, true, TOTAL_PARTICLES);
-		this.screenLength = screenLength;
 	}
 
     /**
@@ -33,12 +28,10 @@ public class Snow extends Effect {
      * @param screenDimensions The dimensions for the screen on which all particles are to be drawn.
      * @param originX The origin, on the X-axis, of the effect.
      * @param originY The origin, on the Y-axis, of the effect.
-     * @param screenLength The total length of the screen.
      * @param totalParticles The total number of particles that this effect will use.
      */
-    public Snow(final Dimension screenDimensions, final float originX, final float originY, final short screenLength, final short totalParticles) {
+    public Snow(final Dimension screenDimensions, final float originX, final float originY, final short totalParticles) {
         super(screenDimensions, originX, originY - 50, true, totalParticles);
-        this.screenLength = screenLength;
     }
 
     /**
@@ -69,7 +62,7 @@ public class Snow extends Effect {
         short indexOfOpenPosition = super.canTakeNewParticles();
 
         if(indexOfOpenPosition != -1) {
-            float xCoord = (float)(Math.random() * screenLength);
+            float xCoord = (float)(Math.random() * super.screenDimensions.width);
             float yCoord = super.originY;
             float dx = (float)Math.random() * (Math.random() >= 0.5f ? -2f : 2f);
             float dy = (float)Math.random() * 2.5f;
