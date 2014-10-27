@@ -112,7 +112,7 @@ public class Particle {
 
             currentLife--;
 
-            int alpha = (int)((currentLife/ totalLife)*100);
+            int alpha = (currentLife / totalLife) * 100;
             color = new Color(color.getRed(), color.getGreen(), color.getBlue(), (alpha >= 0 ? alpha : 0));
 
             return currentLife <= 0;
