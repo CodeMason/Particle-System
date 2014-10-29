@@ -11,7 +11,7 @@ import java.awt.image.BufferStrategy;
 /**
  * Represents a screen on which to draw.
  * @author Valkryst
- * --- Last Edit 27-October-2014
+ * --- Last Edit 29-October-2014
  */
 public class Screen extends Canvas implements Runnable {
     private Thread gameThread;
@@ -30,10 +30,10 @@ public class Screen extends Canvas implements Runnable {
 
     // Testing Stuff:
     public void setEffect(final Dimension screenDimensions) {
-        // effect[0] = new RainbowSnow(this.getSize(), 0.0f, 0.0f, (short)1920);
-        effect[0] = new SplitWave(screenDimensions, 0.0f, 0.0f);
-        // effect[0] = new Snow(this.getSize(), 0.0f, 0.0f, (short)1920);
-        // effect[0] = new Fire(this.getSize(), 512.0f, 512.0f);
+        // effect[0] = new RainbowSnow(screenDimensions, 0.0f, 0.0f);
+        // effect[0] = new SplitWave(screenDimensions, 0.0f, 0.0f);
+        // effect[0] = new Snow(screenDimensions, 0.0f, 0.0f);
+        effect[0] = new Fire(screenDimensions, 512.0f, 512.0f);
     }
     // End Testing Stuff.
 
@@ -58,7 +58,7 @@ public class Screen extends Canvas implements Runnable {
 
 			    //Update the game's logic and then render the screen.
 			    while(delta >= 1) {
-			    	update(delta);
+			    	update();
 			    	delta--;
 			    }
 
@@ -91,7 +91,7 @@ public class Screen extends Canvas implements Runnable {
 
 	// When called this updates all of the game's logic.
     // Still not entirely sure what to use delta for.
-	private void update(final double DELTA) {
+	private void update() {
         // Testing Stuff:
 		for(Effect e : effect) {
             e.update();
@@ -106,29 +106,24 @@ public class Screen extends Canvas implements Runnable {
 
 	// When called this updates the screen.
 	private void render() {
-       // try {
-            BufferStrategy BS = getBufferStrategy();
+        BufferStrategy BS = getBufferStrategy();
 
-            // Forces the canvas to use triple buffering.
-            // This can fail and cause an exception on multi-monitor displays.
-            if(BS == null) {
-                createBufferStrategy(3);
-                BS = getBufferStrategy();
-            }
+        // Forces the canvas to use triple buffering.
+        // This can fail and cause an exception on multi-monitor displays.
+        if(BS == null) {
+            createBufferStrategy(3);
+            BS = getBufferStrategy();
+        }
 
-            // Creates the graphics object and then clears the screen.
-            Graphics g = BS.getDrawGraphics();
-            g.clearRect(0, 0, getWidth(), getHeight());
+        // Creates the graphics object and then clears the screen.
+        Graphics g = BS.getDrawGraphics();
+        g.clearRect(0, 0, getWidth(), getHeight());
 
-            for(Effect e : effect) {
-                e.render(g);
-            }
+        for(Effect e : effect) {
+            e.render(g);
+        }
 
-            g.dispose();
-            BS.show();
-       // } catch(Exception e) {
-        //    Logger.writeLog("An exception has occured in the render() method of the Screen class. This can sometimes happen on multi-monitor displays. Try restarting the program.", Logger.LOG_TYPE_ERROR);
-         //   System.exit(1);
-        //}
+        g.dispose();
+        BS.show();
 	}
 }
