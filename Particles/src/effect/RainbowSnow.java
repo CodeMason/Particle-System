@@ -63,7 +63,7 @@ public class RainbowSnow extends Effect {
         // update() method of the Effect class because it's divisible
         // by 2.
 		if(counter == 10) {
-			for(int i=0;i<TOTAL_PARTICLES/100;i++) { newParticle(); }
+			for(short i=0;i<TOTAL_PARTICLES/100;i++) { newParticle(); }
 			counter = 0;
 		} else {
 			counter++;
