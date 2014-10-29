@@ -44,10 +44,10 @@ public class Fire extends Effect {
         // by 2.
 		if(counter == 20) {
             // Create X particles of each color. These numbers are all arbitrary.
-			for(int i=0;i<10;i++) { newParticle(REDISH_BROWN, (short)150, (short)19); }
-			for(int i=0;i<7;i++) { newParticle(DARK_ORANGE, (short)125, (short)16); }
-			for(int i=0;i<5;i++) { newParticle(GOLD, (short)100, (short)13); }
-			for(int i=0;i<2;i++) { newParticle(YELLOW, (short)50, (short)10); }
+			for(byte i=0;i<10;i++) { newParticle(REDISH_BROWN, (short)150, (short)19); }
+			for(byte i=0;i<7;i++) { newParticle(DARK_ORANGE, (short)125, (short)16); }
+			for(byte i=0;i<5;i++) { newParticle(GOLD, (short)100, (short)13); }
+			for(byte i=0;i<2;i++) { newParticle(YELLOW, (short)50, (short)10); }
 			counter = 0;
 		} else {
 			counter++;
