@@ -124,7 +124,4 @@ public class Effect {
 
         screenDimensions = newScreenDimensions;
     }
-	
-	/** @return Whether or not to render the particles as ovals. If not then render as squares. */
-	public boolean getIsOval() { return isOval; }
 }
