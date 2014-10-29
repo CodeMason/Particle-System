@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Represents a effect in 2D space.
  * @author Valkryst
- * --- Last Edit 27-October-2014
+ * --- Last Edit 29-October-2014
  */
 public class Particle {
     /** The currentlocation of the effect on the X-axis. */
