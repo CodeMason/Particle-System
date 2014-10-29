@@ -7,7 +7,7 @@ import java.awt.*;
 /**
  * Represents a particle effect.
  * @author Valkryst
- * --- Last Edit 27-October-2014
+ * --- Last Edit 29-October-2014
  */
 public class Effect {
     /** The dimensions of the canvas on which the effect is to be rendered. */
