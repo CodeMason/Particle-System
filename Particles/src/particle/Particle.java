@@ -76,7 +76,7 @@ public class Particle {
 
         // Change the effect's coordinates, velocity, gravitational pull, size, and life.
         xCurrent *= widthPercentDifference;
-        dx*= widthPercentDifference;
+        dx  *= widthPercentDifference;
         gravityX *= widthPercentDifference;
 
         yCurrent *= widthPercentDifference;
