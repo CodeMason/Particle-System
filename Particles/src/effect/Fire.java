@@ -7,7 +7,7 @@ import java.awt.*;
 /**
  * Represents a fire.
  * @author Valkryst
- * --- Last Edit 27-October-2014
+ * --- Last Edit 29-October-2014
  */
 public class Fire extends Effect {
     /** The total number of particles that this effect will use. */

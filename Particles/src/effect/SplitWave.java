@@ -7,7 +7,7 @@ import java.awt.*;
 /**
  * Represents rainbow snow fall.
  * @author Valkryst
- * --- Last Edit 27-October-2014
+ * --- Last Edit 29-October-2014
  */
 public class SplitWave extends Effect {
     /** The total number of particles that this effect will use. */
