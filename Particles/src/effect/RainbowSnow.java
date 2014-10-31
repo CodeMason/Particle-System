@@ -1,17 +1,15 @@
 package effect;
 
-import particle.Particle;
-
 import java.awt.*;
 
 /**
  * Represents rainbow snow fall.
  * @author Valkryst
- * --- Last Edit 29-October-2014
+ * --- Last Edit 31-October-2014
  */
 public class RainbowSnow extends Effect {
     /** The total number of particles that this effect will use. */
-    private static final short TOTAL_PARTICLES = 3000;
+    private static final short TOTAL_PARTICLES = 6000;
 
     /** An arbitrary number which controls how fast the rgb values are changed. */
 	private static final float COLOR_CHANGE_CONSTANT = 0.250f;
@@ -120,7 +118,7 @@ public class RainbowSnow extends Effect {
             short life = (short)(Math.random() * 800 + 1);
             Color color = new Color((int)red, (int)green, (int)blue, 100);
 
-            super.addParticle(new Particle(xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color), indexOfOpenPosition);
+            super.addParticle(indexOfOpenPosition, xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color);
         }
 	}
 }

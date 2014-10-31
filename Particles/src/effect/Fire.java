@@ -1,13 +1,11 @@
 package effect;
 
-import particle.Particle;
-
 import java.awt.*;
 
 /**
  * Represents a fire.
  * @author Valkryst
- * --- Last Edit 29-October-2014
+ * --- Last Edit 31-October-2014
  */
 public class Fire extends Effect {
     /** The total number of particles that this effect will use. */
@@ -75,7 +73,7 @@ public class Fire extends Effect {
             float gravityY = 0.0015f * (randBool ? 1f : -1f);
             byte size = (byte)(4 + (Math.random() * 10));
 
-            super.addParticle(new Particle(xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color), indexOfOpenPosition);
+            super.addParticle(indexOfOpenPosition, xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color);
         }
 	}
 }

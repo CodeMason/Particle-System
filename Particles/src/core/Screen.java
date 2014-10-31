@@ -11,7 +11,7 @@ import java.awt.image.BufferStrategy;
 /**
  * Represents a screen on which to draw.
  * @author Valkryst
- * --- Last Edit 29-October-2014
+ * --- Last Edit 31-October-2014
  */
 public class Screen extends Canvas implements Runnable {
     private Thread gameThread;
@@ -32,8 +32,8 @@ public class Screen extends Canvas implements Runnable {
     public void setEffect(final Dimension screenDimensions) {
         // effect[0] = new RainbowSnow(screenDimensions, 0.0f, 0.0f);
         // effect[0] = new SplitWave(screenDimensions, 0.0f, 0.0f);
-        // effect[0] = new Snow(screenDimensions, 0.0f, 0.0f);
-        effect[0] = new Fire(screenDimensions, 512.0f, 512.0f);
+        effect[0] = new Snow(screenDimensions, 0.0f, 0.0f);
+        // effect[0] = new Fire(screenDimensions, 512.0f, 512.0f);
     }
     // End Testing Stuff.
 

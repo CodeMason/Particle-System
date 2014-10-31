@@ -7,7 +7,7 @@ import java.awt.*;
 /**
  * Represents a particle effect.
  * @author Valkryst
- * --- Last Edit 29-October-2014
+ * --- Last Edit 31-October-2014
  */
 public class Effect {
     /** The dimensions of the canvas on which the effect is to be rendered. */
@@ -37,6 +37,10 @@ public class Effect {
 		this.originY = originY;
 		this.isOval = isOval;
         particles = new Particle[totalParticles];
+
+        for(short i=0;i<particles.length;i++) {
+            particles[i] = new Particle();
+        }
 	}
 	
 	/**
@@ -67,10 +71,8 @@ public class Effect {
 
         // Update the specified set of particles.
         for(short i=startingIndex;i<endingIndex;i++) {
-            if(particles[i] != null) {
-                if(particles[i].update(screenDimensions)) {
-                    particles[i] = null;
-                }
+            if(particles[i].isAlive()) {
+                particles[i].update(screenDimensions);
             }
         }
     }
@@ -83,7 +85,7 @@ public class Effect {
 		((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         for(Particle p : particles) {
-            if(p != null) {
+            if(p.isAlive()) {
                 p.render(g, isOval);
             }
         }
@@ -92,7 +94,7 @@ public class Effect {
     /** @return Whether-or-not the effect can hold any more particles. */
     public short canTakeNewParticles() {
         for(short i=0;i<particles.length;i++) {
-            if(particles[i] == null) {
+            if(!particles[i].isAlive()) {
                 return i;
             }
         }
@@ -100,13 +102,20 @@ public class Effect {
     }
 
     /**
-     * Adds the specified particle to the array of particles at the
-     * specified index.
-     * @param newParticle The particle to add to the effect.
+     * Sets all of the data of the specified particle to the new data provided.
      * @param index The index, of the particle array, where the particle is to be added.
+     * @param xCurrent The current location of the effect on the X-axis.
+     * @param yCurrent The currentlocation of the partivcle on the Y-axis.
+     * @param dx The change in X, per update, of the effect.
+     * @param dy The change in Y, per update, of the effect.
+     * @param gravityX The gravitational pull to the left (negative) and right (positive) acting on this effect.
+     * @param gravityY The gravitational pull to the up (negative) and down (positive) acting on this effect.
+     * @param size The size in pixels^2 of the effect.
+     * @param life The remaining lifetime of the effect.
+     * @param color The color of the effect.
      */
-    public void addParticle(final Particle newParticle, final short index) {
-        particles[index] = newParticle;
+    public void addParticle(final short index, final float xCurrent, final float yCurrent, final float dx, final float dy, final float gravityX, final float gravityY, final byte size, final short life, final Color color) {
+        particles[index].setAllData(xCurrent, yCurrent, dx, dy, gravityX, gravityY, size, life, color);
     }
 
     /**

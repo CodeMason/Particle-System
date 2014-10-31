@@ -1,13 +1,11 @@
 package effect;
 
-import particle.Particle;
-
 import java.awt.*;
 
 /**
  * Represents snow fall.
  * @author Valkryst
- * --- Last Edit 29-October-2014
+ * --- Last Edit 31-October-2014
  */
 public class Snow extends Effect {
     /** The total number of particles that this effect will use. */
@@ -71,7 +69,7 @@ public class Snow extends Effect {
             byte size = (byte)(Math.random() * 8 + 1);
             short life = (short)(Math.random() * 800 + 1);
 
-            super.addParticle(new Particle(xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, Color.WHITE), indexOfOpenPosition);
+            super.addParticle(indexOfOpenPosition, xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, Color.WHITE);
         }
 	}
 }

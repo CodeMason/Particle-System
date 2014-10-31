@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Represents a effect in 2D space.
  * @author Valkryst
- * --- Last Edit 29-October-2014
+ * --- Last Edit 31-October-2014
  */
 public class Particle {
     /** The currentlocation of the effect on the X-axis. */
@@ -29,8 +29,11 @@ public class Particle {
     /** The color of the effect. */
     private Color color;
 
+    /** Constructs a new particle. */
+    public Particle() {}
+
     /**
-     * Constructs a new effect with the specified data.
+     * Sets all of the data of the particle.
      * @param xCurrent The current location of the effect on the X-axis.
      * @param yCurrent The currentlocation of the partivcle on the Y-axis.
      * @param dx The change in X, per update, of the effect.
@@ -41,7 +44,7 @@ public class Particle {
      * @param life The remaining lifetime of the effect.
      * @param color The color of the effect.
      */
-    public Particle(final float xCurrent, final float yCurrent, final float dx, final float dy, final float gravityX, final float gravityY, final byte size, final short life, final Color color) {
+    public void setAllData(final float xCurrent, final float yCurrent, final float dx, final float dy, final float gravityX, final float gravityY, final byte size, final short life, final Color color) {
         this.xCurrent = xCurrent;
         this.yCurrent = yCurrent;
         this.dx = dx;
@@ -100,9 +103,9 @@ public class Particle {
      * @param screenDimensions The screen dimensions for the screen on which the particle is to be drawn.
      * @return Whether the effect is 'dead' or not.
      */
-    public boolean update(final Dimension screenDimensions) {
+    public void update(final Dimension screenDimensions) {
         if(xCurrent > screenDimensions.width + 32 || xCurrent < -32 || yCurrent > screenDimensions.height + 32) {
-            return true;
+            currentLife = 0;
         } else {
             xCurrent += dx;
             yCurrent += dy;
@@ -114,8 +117,6 @@ public class Particle {
 
             int alpha = (int)((currentLife / totalLife) * 100);
             color = new Color(color.getRed(), color.getGreen(), color.getBlue(), (alpha >= 0 ? alpha : 0));
-
-            return currentLife <= 0;
         }
     }
 
@@ -132,5 +133,10 @@ public class Particle {
         } else {
             g.fillRect((int) xCurrent - (size / 2), (int) yCurrent - (size / 2), size, size); //xCurrent-(size/2) & yCurrent-(size/2) make sure the effect is rendered at (xCurrent, yCurrent).
         }
+    }
+
+    /** @return Whether-or-not the particle is alive. */
+    public boolean isAlive() {
+        return currentLife > 0;
     }
 }

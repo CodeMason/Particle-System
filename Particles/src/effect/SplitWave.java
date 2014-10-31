@@ -1,13 +1,11 @@
 package effect;
 
-import particle.Particle;
-
 import java.awt.*;
 
 /**
  * Represents rainbow snow fall.
  * @author Valkryst
- * --- Last Edit 29-October-2014
+ * --- Last Edit 31-October-2014
  */
 public class SplitWave extends Effect {
     /** The total number of particles that this effect will use. */
@@ -111,7 +109,7 @@ public class SplitWave extends Effect {
             short life = (short)(Math.random() * 800 + 1);
             Color color = new Color((int)red, (int)green, (int)blue, 100);
 
-            super.addParticle(new Particle(xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color), indexOfOpenPosition);
+            super.addParticle(indexOfOpenPosition, xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color);
         }
     }
 }
