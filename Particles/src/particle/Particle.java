@@ -8,25 +8,25 @@ import java.awt.*;
  * --- Last Edit 31-October-2014
  */
 public class Particle {
-    /** The currentlocation of the effect on the X-axis. */
+    /** The currentlocation of the particle on the X-axis. */
     private float xCurrent;
-    /** The current location of the effect on the Y-axis. */
+    /** The current location of the particle on the Y-axis. */
     private float yCurrent;
-    /** The change in X, per update, of the effect. */
+    /** The change in X, per update, of the particle. */
     private float dx;
-    /** The change in Y, per update, of the effect. */
+    /** The change in Y, per update, of the particle. */
     private float dy;
-    /** The gravitational pull to the left (negative) and right (positive) acting on this effect. */
+    /** The gravitational pull to the left (negative) and right (positive) acting on this particle. */
     private float gravityX;
-    /** The gravitational pull to the up (negative) and down (positive) acting on this effect. */
+    /** The gravitational pull to the up (negative) and down (positive) acting on this particle. */
     private float gravityY;
-    /** The size in pixels^2 of the effect. */
+    /** The size in pixels^2 of the particle. */
     private byte size;
-    /** The remaining lifetime of the effect. */
+    /** The remaining lifetime of the particle. */
     private float currentLife;
-    /** The total lifetime of the effect. */
+    /** The total lifetime of the particle. */
     private short totalLife;
-    /** The color of the effect. */
+    /** The color of the particle. */
     private Color color;
 
     /** Constructs a new particle. */
