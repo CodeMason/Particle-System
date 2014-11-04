@@ -7,7 +7,7 @@ import java.awt.*;
 /**
  * Represents a particle effect.
  * @author Valkryst
- * --- Last Edit 31-October-2014
+ * --- Last Edit 04-November-2014
  */
 public class Effect {
     /** The dimensions of the canvas on which the effect is to be rendered. */
@@ -101,6 +101,21 @@ public class Effect {
             }
         }
         return -1;
+    }
+
+    /**
+     * Sets all of the data of the specified particle to the new data provided.
+     * @param index The index, of the particle array, where the particle is to be added.
+     * @param xCurrent The current location of the effect on the X-axis.
+     * @param yCurrent The currentlocation of the partivcle on the Y-axis.
+     * @param dx The change in X, per update, of the effect.
+     * @param dy The change in Y, per update, of the effect.
+     * @param size The size in pixels^2 of the effect.
+     * @param life The remaining lifetime of the effect.
+     * @param color The color of the effect.
+     */
+    public void addParticle(final short index, final float xCurrent, final float yCurrent, final float dx, final float dy, final byte size, final short life, final Color color) {
+        particles[index].setAllData(xCurrent, yCurrent, dx, dy, size, life, color);
     }
 
     /**

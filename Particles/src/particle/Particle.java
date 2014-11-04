@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Represents a particle in 2D space.
  * @author Valkryst
- * --- Last Edit 31-October-2014
+ * --- Last Edit 04-November-2014
  */
 public class Particle {
     /** The currentlocation of the particle on the X-axis. */
@@ -31,6 +31,27 @@ public class Particle {
 
     /** Constructs a new particle. */
     public Particle() {}
+
+    /**
+     * Sets all of the data of the particle.
+     * @param xCurrent The current location of the effect on the X-axis.
+     * @param yCurrent The currentlocation of the partivcle on the Y-axis.
+     * @param dx The change in X, per update, of the effect.
+     * @param dy The change in Y, per update, of the effect.
+     * @param size The size in pixels^2 of the effect.
+     * @param life The remaining lifetime of the effect.
+     * @param color The color of the effect.
+     */
+    public void setAllData(final float xCurrent, final float yCurrent, final float dx, final float dy, final byte size, final short life, final Color color) {
+        this.xCurrent = xCurrent;
+        this.yCurrent = yCurrent;
+        this.dx = dx;
+        this.dy = dy;
+        this.size = size;
+        currentLife = life;
+        totalLife = life;
+        this.color = color;
+    }
 
     /**
      * Sets all of the data of the particle.
@@ -138,5 +159,29 @@ public class Particle {
     /** @return Whether-or-not the particle is alive. */
     public boolean isAlive() {
         return currentLife > 0;
+    }
+
+    public float getXCurrent() {
+        return xCurrent;
+    }
+
+    public float getYCurrent() {
+        return yCurrent;
+    }
+
+    public float getGravityX() {
+        return gravityX;
+    }
+
+    public float getGravityY() {
+        return gravityY;
+    }
+
+    public void setGravityX(final float gravityX) {
+        this.gravityX = gravityX;
+    }
+
+    public void setGravityY(final float gravityY) {
+        this.gravityY = gravityY;
     }
 }
