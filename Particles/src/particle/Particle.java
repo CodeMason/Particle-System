@@ -3,7 +3,7 @@ package particle;
 import java.awt.*;
 
 /**
- * Represents a effect in 2D space.
+ * Represents a particle in 2D space.
  * @author Valkryst
  * --- Last Edit 31-October-2014
  */
