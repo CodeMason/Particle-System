@@ -107,39 +107,7 @@ public class ParticleHoleEffect extends Effect {
         // Apply gravitational pull of all of the ParticleHoles to all of the particles.
         for(Particle p : particles) {
             for(ParticleHole h : particleHoles) {
-                float xCoord = p.getXCurrent();
-                float yCoord = p.getYCurrent();
-                float gravityX = p.getGravityX();
-                float gravityY = p.getGravityY();
-
-                float differenceX = h.getXPosition() - xCoord;
-                float differenceY = h.getYPosition() - yCoord;
-
-                differenceX = differenceX / screenDimensions.width;
-                differenceY = differenceY / screenDimensions.height;
-
-                gravityX += (h.getXGravitationalPull() * differenceX);
-                gravityY += (h.getYGravitationalPull() * differenceY);
-
-                p.setGravityX(gravityX);
-                p.setGravityY(gravityY);
-            }
-        }
-
-        // Fun test code. Makes the particle holes go around the screen in a pseudorandom way.
-        for(ParticleHole h : particleHoles) {
-            h.setXPosition((float)(Math.random() * 100) * (Math.random() >= 0.5 ? 1 : -1) + h.getXPosition());
-            h.setYPosition((float) (Math.random() * 100) * (Math.random() >= 0.5 ? 1 : -1) + h.getYPosition()); 
-            if(h.getXPosition() < 0) {
-                h.setXPosition(0);
-            } else if(h.getXPosition() > 1920) {
-                h.setXPosition(1920);
-            }
-
-            if(h.getYPosition() < 0) {
-                h.setYPosition(0);
-            } else if(h.getYPosition() > 1080) {
-                h.setYPosition(1080);
+                h.applyGravitationalForceToParticle(p, screenDimensions);
             }
         }
 
