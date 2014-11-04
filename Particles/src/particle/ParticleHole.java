@@ -1,5 +1,7 @@
 package particle;
 
+import java.awt.*;
+
 /**
  * Represents a particle in 2D space.
  * @author Valkryst
@@ -43,20 +45,29 @@ public class ParticleHole {
         yGravitationalPull = gravitationalPull;
     }
 
+    /**
+     * Applies the gravitational force of the particle hole to
+     * the specified particle.
+     * @param p The particle to apply the gravitational force to.
+     * @param screenDimensions The screen dimensions.
+     */
+    public void applyGravitationalForceToParticle(final Particle p, final Dimension screenDimensions) {
+        float differenceX = xPosition - p.getXCurrent();
+        float differenceY = yPosition - p.getYCurrent();
+
+        differenceX = differenceX / screenDimensions.width;
+        differenceY = differenceY / screenDimensions.height;
+
+        p.setGravityX(p.getGravityX() + (xGravitationalPull * differenceX));
+        p.setGravityY(p.getGravityY() + (yGravitationalPull * differenceY));
+    }
+
     public float getXPosition() {
         return xPosition;
     }
 
     public float getYPosition() {
         return yPosition;
-    }
-
-    public float getXGravitationalPull() {
-        return xGravitationalPull;
-    }
-
-    public float getYGravitationalPull() {
-        return yGravitationalPull;
     }
 
     public void setXPosition(final float xPosition) {
