@@ -53,24 +53,7 @@ public class Effect {
      * call which happens multiple times a second.
 	 */
 	public void update() {
-        // Initalize variables to a default and then set them based on certain conditions.
-        short startingIndex = 0;
-        short endingIndex = (short)particles.length;
-
-        switch(counter % 4) { // When the counter is equal to zero, neither of these will be run, but it's not noticable.
-            case 1: {
-                endingIndex = (short)(particles.length / 2);
-                break;
-            }
-            case 2: {
-                startingIndex = (short)((particles.length / 2) + 1);
-                endingIndex = (short)particles.length;
-                break;
-            }
-        }
-
-        // Update the specified set of particles.
-        for(short i=startingIndex;i<endingIndex;i++) {
+        for(short i=0;i<particles.length;i++) {
             if(particles[i].isAlive()) {
                 particles[i].update(screenDimensions);
             }
