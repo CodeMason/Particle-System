@@ -65,10 +65,6 @@ public class Effect {
 	 * @param g Graphics object with which to draw.
 	 */
 	public void render(final Graphics g) {
-        if(isOval) {
-		    ((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        }
-
         for(Particle p : particles) {
             if(p.isAlive()) {
                 p.render(g, isOval);
