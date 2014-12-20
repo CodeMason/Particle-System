@@ -53,9 +53,9 @@ public class Effect {
      * call which happens multiple times a second.
 	 */
 	public void update() {
-        for(short i=0;i<particles.length;i++) {
-            if(particles[i].isAlive()) {
-                particles[i].update(screenDimensions);
+        for(Particle particle : particles) {
+            if(particle.isAlive()) {
+                particle.update(screenDimensions);
             }
         }
     }
