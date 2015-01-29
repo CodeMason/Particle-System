@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Represents a particle in 2D space.
  * @author Valkryst
- * --- Last Edit 04-November-2014
+ * --- Last Edit 29-January-2015
  */
 public class Particle {
     /** The currentlocation of the particle on the X-axis. */
@@ -92,23 +92,20 @@ public class Particle {
         short heightNew = (short)newScreenDimensions.height;
 
         // Calculate the % difference between the widths and heights.
-        short widthDifference = (short)(widthCurrent - widthNew);
-        short heightDifference = (short)(heightCurrent - heightNew);
-
-        float widthPercentDifference = widthDifference / widthCurrent;
-        float heightPercentDifference = heightDifference / heightCurrent;
+        short widthDifference = (short)(widthNew / widthCurrent);
+        short heightDifference = (short)(heightNew / heightCurrent);
 
         // Change the effect's coordinates, velocity, gravitational pull, size, and life.
-        xCurrent *= widthPercentDifference;
-        dx  *= widthPercentDifference;
-        gravityX *= widthPercentDifference;
+        xCurrent *= widthDifference;
+        dx  *= widthDifference;
+        gravityX *= widthDifference;
 
-        yCurrent *= widthPercentDifference;
-        dy *= widthPercentDifference;
-        gravityY *= widthPercentDifference;
+        yCurrent *= heightDifference;
+        dy *= heightDifference;
+        gravityY *= heightDifference;
 
         // Update the size and life using the average of the two for a simple result.
-        float averagePercentDifference = (widthPercentDifference + heightPercentDifference) / 2;
+        float averagePercentDifference = (widthDifference + heightDifference) / 2;
         size *= averagePercentDifference;
         currentLife *= averagePercentDifference;
         totalLife *= averagePercentDifference;
