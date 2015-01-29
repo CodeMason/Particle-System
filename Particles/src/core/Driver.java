@@ -5,12 +5,21 @@ import java.awt.*;
 
 public class Driver {
 	public static void main(String[] args) {
+        /*
         // Create the frame.
         Frame frame = new JFrame();
         frame.setTitle("Particle Test");
         frame.setExtendedState(Frame.MAXIMIZED_BOTH);
         frame.setUndecorated(true);
         frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
+        frame.requestFocus();
+        */
+
+        // Create the frame.
+        Frame frame = new JFrame();
+        frame.setTitle("Particle Test");
+        frame.setSize(512, 512);
         frame.setLocationRelativeTo(null);
         frame.requestFocus();
 
