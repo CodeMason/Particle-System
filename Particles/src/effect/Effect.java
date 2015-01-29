@@ -119,9 +119,8 @@ public class Effect {
      * updates all of the particles in the Effect to work with the new dimensions.
      *
      * @param newScreenDimensions The new screen dimensions for the screen on which the particle is to be drawn.
-     * @param particles An array containing all of the particles of an Effect.
      */
-    public void setScreenDimensions(final Dimension newScreenDimensions, final Particle[] particles) {
+    public void setScreenDimensions(final Dimension newScreenDimensions) {
         // Update all particles to work properly with the new screen dimensions.
         for(Particle p : particles) {
             p.updateForNewScreenDimensions(screenDimensions, newScreenDimensions);
