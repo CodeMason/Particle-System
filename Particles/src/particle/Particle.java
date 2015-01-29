@@ -106,7 +106,6 @@ public class Particle {
 
         // Update the size and life using the average of the two for a simple result.
         float averagePercentDifference = (widthDifference + heightDifference) / 2;
-        size *= averagePercentDifference;
         currentLife *= averagePercentDifference;
         totalLife *= averagePercentDifference;
     }
