@@ -11,7 +11,7 @@ import java.awt.image.BufferStrategy;
 /**
  * Represents a screen on which to draw.
  * @author Valkryst
- * --- Last Edit 04-November-2014
+ * --- Last Edit 29-January-2015
  */
 public class Screen extends Canvas implements Runnable {
     private Thread gameThread;
