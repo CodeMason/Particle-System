@@ -46,7 +46,7 @@ public class Effect {
 	/**
 	 * Updates half of all of the particles of the effect.
      * On the first call, the particles from 0 to (particles.length/2) are updated.
-     * On the second call, the partuicles from ((particles.length/2)+1) to particles.length are updated.
+     * On the second call, the particles from ((particles.length/2)+1) to particles.length are updated.
      *
      * This algorithm of only updating half of the particles at any given time should, in theory, reduce the
      * resources used on every update call. The alternative is to update every single particle on every single update
@@ -86,7 +86,7 @@ public class Effect {
      * Sets all of the data of the specified particle to the new data provided.
      * @param index The index, of the particle array, where the particle is to be added.
      * @param xCurrent The current location of the effect on the X-axis.
-     * @param yCurrent The currentlocation of the partivcle on the Y-axis.
+     * @param yCurrent The currentlocation of the particle on the Y-axis.
      * @param dx The change in X, per update, of the effect.
      * @param dy The change in Y, per update, of the effect.
      * @param size The size in pixels^2 of the effect.
@@ -101,7 +101,7 @@ public class Effect {
      * Sets all of the data of the specified particle to the new data provided.
      * @param index The index, of the particle array, where the particle is to be added.
      * @param xCurrent The current location of the effect on the X-axis.
-     * @param yCurrent The currentlocation of the partivcle on the Y-axis.
+     * @param yCurrent The currentlocation of the particle on the Y-axis.
      * @param dx The change in X, per update, of the effect.
      * @param dy The change in Y, per update, of the effect.
      * @param gravityX The gravitational pull to the left (negative) and right (positive) acting on this effect.
