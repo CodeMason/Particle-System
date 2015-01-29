@@ -22,6 +22,7 @@ public class Screen extends Canvas implements Runnable {
 
 	// Testing Stuff:
 	private Effect[] effect = new Effect[1];
+    private Dimension previousScreenDimensions;
 	// End Testing Stuff.
 
 	public Screen() {
@@ -30,15 +31,12 @@ public class Screen extends Canvas implements Runnable {
 
     // Testing Stuff:
     public void setEffect(final Dimension screenDimensions) {
-        // effect[0] = new RainbowSnow(screenDimensions, 0.0f, 0.0f);
-        // effect[0] = new SplitWave(screenDimensions, 0.0f, 0.0f);
-        // effect[0] = new Snow(screenDimensions, 0.0f, 0.0f);
-        // effect[0] = new Fire(screenDimensions, 512.0f, 512.0f);
-        effect[0] = new ParticleHoleEffect(screenDimensions, 0.0f, 0.0f);
+        effect[0] = new RainbowSnow(screenDimensions, 0.0f, 0.0f);
     }
     // End Testing Stuff.
 
     public synchronized void start() {
+        previousScreenDimensions = this.getSize();
         isProgramRunning = true;
         gameThread = new Thread(this, "Display");
         gameThread.start();
@@ -94,6 +92,25 @@ public class Screen extends Canvas implements Runnable {
     // Still not entirely sure what to use delta for.
 	private void update() {
         // Testing Stuff:
+        if(KEY.isKeyPressed(KeyEvent.VK_F1)) {
+            effect[0] = new RainbowSnow(this.getSize(), 0.0f, 0.0f);
+        } else if(KEY.isKeyPressed(KeyEvent.VK_F2)) {
+            effect[0] = new SplitWave(this.getSize(), 0.0f, 0.0f);
+        } else if(KEY.isKeyPressed(KeyEvent.VK_F3)) {
+            effect[0] = new Snow(this.getSize(), 0.0f, 0.0f);
+        } else if(KEY.isKeyPressed(KeyEvent.VK_F4)) {
+            effect[0] = new Fire(this.getSize(), 512.0f, 512.0f);
+        } else if(KEY.isKeyPressed(KeyEvent.VK_F5)) {
+            effect[0] = new ParticleHoleEffect(this.getSize(), 0.0f, 0.0f);
+        }
+
+        if(!this.getSize().equals(previousScreenDimensions)) {
+            previousScreenDimensions = this.getSize();
+            for(Effect e : effect) {
+                e.setScreenDimensions(this.getSize());
+            }
+        }
+
 		for(Effect e : effect) {
             e.update();
 		}
