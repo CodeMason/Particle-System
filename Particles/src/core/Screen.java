@@ -99,7 +99,7 @@ public class Screen extends Canvas implements Runnable {
         } else if(KEY.isKeyPressed(KeyEvent.VK_F3)) {
             effect[0] = new Snow(this.getSize(), 0.0f, 0.0f);
         } else if(KEY.isKeyPressed(KeyEvent.VK_F4)) {
-            effect[0] = new Fire(this.getSize(), 512.0f, 512.0f);
+            effect[0] = new Fire(this.getSize(), (float)this.getWidth()/2, (float)this.getHeight()/2);
         } else if(KEY.isKeyPressed(KeyEvent.VK_F5)) {
             effect[0] = new ParticleHoleEffect(this.getSize(), 0.0f, 0.0f);
         }
