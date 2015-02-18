@@ -35,6 +35,7 @@ public class Screen extends Canvas implements Runnable {
     }
     // End Testing Stuff.
 
+    /** Start the render-update-loop thread. */
     public synchronized void start() {
         previousScreenDimensions = this.getSize();
         isProgramRunning = true;
@@ -80,6 +81,7 @@ public class Screen extends Canvas implements Runnable {
 		stop();
 	}
 
+    /** Stop the render-update-loop thread. */
 	public synchronized void stop() {
 		try {
 			gameThread.join();
