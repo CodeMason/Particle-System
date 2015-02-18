@@ -118,7 +118,6 @@ public class Particle {
      * remaining lifetime, and color.
      *
      * @param screenDimensions The screen dimensions for the screen on which the particle is to be drawn.
-     * @return Whether the effect is 'dead' or not.
      */
     public void update(final Dimension screenDimensions) {
         if(xCurrent > screenDimensions.width + 32 || xCurrent < -32 || yCurrent > screenDimensions.height + 32) {
