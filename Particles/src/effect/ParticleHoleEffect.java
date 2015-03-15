@@ -7,7 +7,7 @@ import java.awt.*;
 
 /**
  * @author Valkryst
- * --- Last Edit 03-November-2014
+ * --- Last Edit 15-March-2015
  */
 public class ParticleHoleEffect extends Effect {
     private final ParticleHole[] particleHoles = {
