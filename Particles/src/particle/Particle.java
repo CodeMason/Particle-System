@@ -56,7 +56,7 @@ public class Particle {
     /**
      * Sets all of the data of the particle.
      * @param xCurrent The current location of the effect on the X-axis.
-     * @param yCurrent The currentlocation of the partivcle on the Y-axis.
+     * @param yCurrent The currentlocation of the particle on the Y-axis.
      * @param dx The change in X, per update, of the effect.
      * @param dy The change in Y, per update, of the effect.
      * @param gravityX The gravitational pull to the left (negative) and right (positive) acting on this effect.
