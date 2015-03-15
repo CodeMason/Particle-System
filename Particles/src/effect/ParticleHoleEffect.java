@@ -11,8 +11,8 @@ import java.awt.*;
  */
 public class ParticleHoleEffect extends Effect {
     private final ParticleHole[] particleHoles = {
-            new ParticleHole(250f, 250f, 0.000175f, -0.000075f),
-            new ParticleHole(750f, 750f, -0.000075f, 0.000175f)
+        new ParticleHole(250f, 250f, 0.000175f, -0.000075f),
+        new ParticleHole(750f, 750f, -0.000075f, 0.000175f)
     };
 
     /** The total number of particles that this effect will use. */
