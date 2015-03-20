@@ -53,8 +53,8 @@ public class Screen implements ApplicationListener {
 
     @Override
     public void render() {
-        Gdx.graphics.getGL30().glClearColor(0, 0, 0, 1);
-        Gdx.graphics.getGL30().glClear(GL30.GL_COLOR_BUFFER_BIT | GL30.GL_DEPTH_BUFFER_BIT);
+        Gdx.graphics.getGL30().glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        Gdx.graphics.getGL30().glClear(GL30.GL_COLOR_BUFFER_BIT);
 
         Gdx.graphics.getGL30().glEnable(GL30.GL_BLEND);
         Gdx.graphics.getGL30().glBlendFunc(GL30.GL_SRC_ALPHA, GL30.GL_ONE_MINUS_SRC_ALPHA);
