@@ -1,20 +1,21 @@
 package effect;
 
+import com.badlogic.gdx.graphics.Color;
+
 import java.awt.*;
 
 /**
  * Represents rainbow snow fall.
  * @author Valkryst
- * --- Last Edit 31-October-2014
  */
 public class RainbowSnow extends Effect {
     /** The total number of particles that this effect will use. */
     private static final short TOTAL_PARTICLES = 6000;
 
     /** An arbitrary number which controls how fast the rgb values are changed. */
-	private static final float COLOR_CHANGE_CONSTANT = 0.250f;
+	private static final float COLOR_CHANGE_CONSTANT = 0.00025f;
     /** An rgb value representing the color to apply to all new particles. */
-	private float red = 255, green = 0, blue = 0;
+    private float red = 1.0f, green = 0.0f, blue = 0.0f;
     /** A boolean value representing which color will be used next. */
 	private boolean changingToRed = false, changingToGreen = true, changingToBlue = false;
 
@@ -25,7 +26,7 @@ public class RainbowSnow extends Effect {
      * @param originY The origin, on the Y-axis, of the effect.
      */
 	public RainbowSnow(final Dimension screenDimensions, final float originX, final float originY) {
-		super(screenDimensions, originX, originY - 50, false, TOTAL_PARTICLES);
+		super(screenDimensions, originX, originY + 50, false, TOTAL_PARTICLES);
 	}
 
     /**
@@ -36,7 +37,7 @@ public class RainbowSnow extends Effect {
      * @param totalParticles The total number of particles that this effect will use.
      */
     public RainbowSnow(final Dimension screenDimensions, final float originX, final float originY, final short totalParticles) {
-        super(screenDimensions, originX, originY - 50, false, totalParticles);
+        super(screenDimensions, originX, originY + 50, false, totalParticles);
     }
 	
 	/**
@@ -67,34 +68,34 @@ public class RainbowSnow extends Effect {
 			counter++;
 		}
 
-		if(changingToRed) {
-			if(blue > 0) { blue -= COLOR_CHANGE_CONSTANT; }
+        if(changingToRed) {
+            if(blue > 0.0f) { blue -= COLOR_CHANGE_CONSTANT; }
 
-			if(red < 255) {
-				red += COLOR_CHANGE_CONSTANT;
-			} else if(red == 255 && blue == 0) {
+            if(red < 1.0f) {
+                red += COLOR_CHANGE_CONSTANT;
+            } else if(red >= 1.0f && blue <= 0.0090f) {
                 changingToRed = false;
                 changingToGreen = true;
-			}
-		} else if(changingToGreen) {
-			if(red > 0) { red -= COLOR_CHANGE_CONSTANT; }
+            }
+        } else if(changingToGreen) {
+            if(red > 0.0f) { red -= COLOR_CHANGE_CONSTANT; }
 
-			if(green < 255) {
-				green += COLOR_CHANGE_CONSTANT;
-			} else if(green == 255 && red == 0) {
+            if(green < 1.0f) {
+                green += COLOR_CHANGE_CONSTANT;
+            } else if(green >- 1.0f && red <= 0.0090f) {
                 changingToGreen = false;
                 changingToBlue = true;
-			}
-		} else if(changingToBlue) {
-			if(green > 0) { green -= COLOR_CHANGE_CONSTANT; }
+            }
+        } else if(changingToBlue) {
+            if(green > 0.0f) { green -= COLOR_CHANGE_CONSTANT; }
 
-			if(blue < 255) {
-				blue += COLOR_CHANGE_CONSTANT;
-			} else if(blue == 255 && green == 0) {
+            if(blue < 1.0f) {
+                blue += COLOR_CHANGE_CONSTANT;
+            } else if(blue >= 1.0f && green <= 0.0090f) {
                 changingToBlue = false;
                 changingToRed = true;
-			}
-		}
+            }
+        }
 
         // Iterate through the list of particles and update each one.
         super.update();
@@ -111,12 +112,12 @@ public class RainbowSnow extends Effect {
             float xCoord = (float)(Math.random() * super.screenDimensions.width);
             float yCoord = super.originY;
             float dx = (float)Math.random() * (randBool ? -2f : 2f);
-            float dy = (float)Math.random() * 2.5f;
+            float dy = (float)Math.random() * -2.5f;
             float gravityX = 0.0050f * (randBool ? -1f : 1f);
             float gravityY = 0.0f;
             byte size = (byte)(Math.random() * 16 + 1);
             short life = (short)(Math.random() * 800 + 1);
-            Color color = new Color((int)red, (int)green, (int)blue, 100);
+            Color color = new Color(red, green, blue, (float)Math.random());
 
             super.addParticle(indexOfOpenPosition, xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color);
         }

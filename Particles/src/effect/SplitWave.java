@@ -1,5 +1,7 @@
 package effect;
 
+import com.badlogic.gdx.graphics.Color;
+
 import java.awt.*;
 
 /**
@@ -12,9 +14,9 @@ public class SplitWave extends Effect {
     private static final short TOTAL_PARTICLES = 10000;
 
     /** An arbitrary number which controls how fast the rgb values are changed. */
-    private static final float COLOR_CHANGE_CONSTANT = 3f;
+    private static final float COLOR_CHANGE_CONSTANT = 0.01f;
     /** An rgb value representing the color to apply to all new particles. */
-    private float red = 255, green = 0, blue = 0;
+    private float red = 1.0f, green = 0.0f, blue = 0.0f;
     /** A boolean value representing which color will be used next. */
     private boolean changingToRed = false, changingToGreen = true, changingToBlue = false;
 
@@ -57,29 +59,29 @@ public class SplitWave extends Effect {
         }
 
         if(changingToRed) {
-            if(blue > 0) { blue -= COLOR_CHANGE_CONSTANT; }
+            if(blue > 0.0f) { blue -= COLOR_CHANGE_CONSTANT; }
 
-            if(red < 255) {
+            if(red < 1.0f) {
                 red += COLOR_CHANGE_CONSTANT;
-            } else if(red == 255 && blue == 0) {
+            } else if(red >= 1.0f && blue <= 0.0090f) {
                 changingToRed = false;
                 changingToGreen = true;
             }
         } else if(changingToGreen) {
-            if(red > 0) { red -= COLOR_CHANGE_CONSTANT; }
+            if(red > 0.0f) { red -= COLOR_CHANGE_CONSTANT; }
 
-            if(green < 255) {
+            if(green < 1.0f) {
                 green += COLOR_CHANGE_CONSTANT;
-            } else if(green == 255 && red == 0) {
+            } else if(green >- 1.0f && red <= 0.0090f) {
                 changingToGreen = false;
                 changingToBlue = true;
             }
         } else if(changingToBlue) {
-            if(green > 0) { green -= COLOR_CHANGE_CONSTANT; }
+            if(green > 0.0f) { green -= COLOR_CHANGE_CONSTANT; }
 
-            if(blue < 255) {
+            if(blue < 1.0f) {
                 blue += COLOR_CHANGE_CONSTANT;
-            } else if(blue == 255 && green == 0) {
+            } else if(blue >= 1.0f && green <= 0.0090f) {
                 changingToBlue = false;
                 changingToRed = true;
             }
@@ -107,7 +109,7 @@ public class SplitWave extends Effect {
             float gravityY = 0.0f;
             byte size = (byte)(Math.floor(Math.random() * 6) + 8);
             short life = (short)(Math.random() * 800 + 1);
-            Color color = new Color((int)red, (int)green, (int)blue, 100);
+            Color color = new Color(red, green, blue, 1.0f);
 
             super.addParticle(indexOfOpenPosition, xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color);
         }

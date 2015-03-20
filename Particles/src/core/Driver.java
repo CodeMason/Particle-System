@@ -1,7 +1,7 @@
 package core;
 
-import javax.swing.*;
-import java.awt.*;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 public class Driver {
 	public static void main(String[] args) {
@@ -16,6 +16,7 @@ public class Driver {
         frame.requestFocus();
         */
 
+        /*
         // Create the frame.
         Frame frame = new JFrame();
         frame.setTitle("Particle Test");
@@ -35,5 +36,12 @@ public class Driver {
         screen.setEffect(frame.getSize());
 
         screen.start();
+        */
+
+        LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+        config.title = "Particle Test";
+        config.width = 512;
+        config.height = 512;
+        new LwjglApplication(new Screen(), config);
 	}
 }

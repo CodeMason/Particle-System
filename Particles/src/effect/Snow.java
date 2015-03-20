@@ -1,5 +1,7 @@
 package effect;
 
+import com.badlogic.gdx.graphics.Color;
+
 import java.awt.*;
 
 /**
@@ -18,7 +20,7 @@ public class Snow extends Effect {
      * @param originY The origin, on the Y-axis, of the effect.
      */
 	public Snow(final Dimension screenDimensions, final float originX, final float originY) {
-		super(screenDimensions, originX, originY - 50, true, TOTAL_PARTICLES);
+		super(screenDimensions, originX, originY + 50, true, TOTAL_PARTICLES);
 	}
 
     /**
@@ -29,7 +31,7 @@ public class Snow extends Effect {
      * @param totalParticles The total number of particles that this effect will use.
      */
     public Snow(final Dimension screenDimensions, final float originX, final float originY, final short totalParticles) {
-        super(screenDimensions, originX, originY - 50, true, totalParticles);
+        super(screenDimensions, originX, originY + 50, true, totalParticles);
     }
 
     /**
@@ -63,13 +65,14 @@ public class Snow extends Effect {
             float xCoord = (float)(Math.random() * super.screenDimensions.width);
             float yCoord = super.originY;
             float dx = (float)Math.random() * (Math.random() >= 0.5f ? -2f : 2f);
-            float dy = (float)Math.random() * 2.5f;
-            float gravityX = -0.0075f;
+            float dy = (float)Math.random() * -2.5f;
+            float gravityX = 0.0075f;
             float gravityY = 0.0f;
             byte size = (byte)(Math.random() * 8 + 1);
             short life = (short)(Math.random() * 800 + 1);
+            Color color = new Color(1.0f, 1.0f, 1.0f, (float)Math.random());
 
-            super.addParticle(indexOfOpenPosition, xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, Color.WHITE);
+            super.addParticle(indexOfOpenPosition, xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color);
         }
 	}
 }

@@ -1,5 +1,7 @@
 package effect;
 
+import com.badlogic.gdx.graphics.Color;
+
 import java.awt.*;
 
 /**
@@ -12,13 +14,13 @@ public class Fire extends Effect {
     private static final short TOTAL_PARTICLES = 200;
 
     /** One of the four colors used by the fire particles. */
-	private static final Color REDISH_BROWN = new Color(159, 70, 24, 100);
+	private static final Color REDISH_BROWN = new Color(0.62353f, 0.27451f, 0.09411f, 1.0f);
     /** One of the four colors used by the fire particles. */
-	private static final Color DARK_ORANGE = new Color(208, 117, 29, 100);
+	private static final Color DARK_ORANGE = new Color(0.81569f, 0.45882f, 0.11372f, 1.0f);
     /** One of the four colors used by the fire particles. */
-	private static final Color GOLD = new Color(246, 206, 72, 100);
+	private static final Color GOLD = new Color(0.96471f, 0.80784f, 0.28236f, 1.0f);
     /** One of the four colors used by the fire particles. */
-	private static final Color YELLOW = new Color(251, 239, 169, 100);
+	private static final Color YELLOW = new Color(0.98431f, 0.93725f, 0.66275f, 1.0f);
 
     /**
      * Constructs a new Snow particle effect.
@@ -68,7 +70,7 @@ public class Fire extends Effect {
             float xCoord = super.originX + (float)(Math.random() * maxAxisMovement) * (randBool ? -1f : 1f);
             float yCoord = super.originY;
             float dx = (float)Math.random() / 4f;
-            float dy = (float)Math.random() * -1f;
+            float dy = (float)Math.random() * 1f;
             float gravityX = 0.0f;
             float gravityY = 0.0015f * (randBool ? 1f : -1f);
             byte size = (byte)(4 + (Math.random() * 10));

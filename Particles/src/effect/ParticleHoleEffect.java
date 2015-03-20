@@ -1,5 +1,6 @@
 package effect;
 
+import com.badlogic.gdx.graphics.Color;
 import particle.Particle;
 import particle.ParticleHole;
 

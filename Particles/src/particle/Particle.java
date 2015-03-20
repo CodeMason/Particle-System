@@ -1,5 +1,8 @@
 package particle;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+
 import java.awt.*;
 
 /**
@@ -120,7 +123,7 @@ public class Particle {
      * @param screenDimensions The screen dimensions for the screen on which the particle is to be drawn.
      */
     public void update(final Dimension screenDimensions) {
-        if(xCurrent > screenDimensions.width + 32 || xCurrent < -32 || yCurrent > screenDimensions.height + 32) {
+        if(xCurrent > screenDimensions.width + 32 || xCurrent < -32 || yCurrent <= -32) {
             currentLife = 0;
         } else {
             xCurrent += dx;
@@ -131,23 +134,22 @@ public class Particle {
 
             currentLife--;
 
-            int alpha = (int)((currentLife / totalLife) * 100);
-            color = new Color(color.getRed(), color.getGreen(), color.getBlue(), (alpha >= 0 ? alpha : 0));
+            float alpha = (currentLife / totalLife);
+            color.set(color.r, color.g, color.b, (alpha >= 0.0f ? alpha : 0.0f));
         }
     }
 
     /**
      * Renders the effect to the screen.
-     * @param g The graphics object to render with.
      * @param isOval Whether or not to render the effect as an oval.
      */
-    public void render(final Graphics g, final boolean isOval) {
-        g.setColor(color);
+    public void render(final ShapeRenderer renderer, final boolean isOval) {
+        renderer.setColor(color);
 
         if(isOval) {
-            g.fillOval((int) xCurrent - (size / 2), (int) yCurrent - (size / 2), size, size); //xCurrent-(size/2) & yCurrent-(size/2) make sure the effect is rendered at (xCurrent, yCurrent).
+            renderer.circle((int) xCurrent - (size / 2), (int) yCurrent - (size / 2), size, size); //xCurrent-(size/2) & yCurrent-(size/2) make sure the effect is rendered at (xCurrent, yCurrent).
         } else {
-            g.fillRect((int) xCurrent - (size / 2), (int) yCurrent - (size / 2), size, size); //xCurrent-(size/2) & yCurrent-(size/2) make sure the effect is rendered at (xCurrent, yCurrent).
+            renderer.rect((int) xCurrent - (size / 2), (int) yCurrent - (size / 2), size, size); //xCurrent-(size/2) & yCurrent-(size/2) make sure the effect is rendered at (xCurrent, yCurrent).
         }
     }
 

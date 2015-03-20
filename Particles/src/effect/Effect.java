@@ -1,5 +1,7 @@
 package effect;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import particle.Particle;
 
 import java.awt.*;
@@ -15,9 +17,9 @@ public class Effect {
 	/** A collection of particles that make up the snow.*/
 	protected final Particle[] particles;
 	/** The origin of this snow on the X-axis.*/
-	protected final float originX;
+	protected float originX;
 	/** The origin of this snow on the Y-axis.*/
-	protected final float originY;
+	protected float originY;
 	/** Whether or not to render the particles as ovals. If not then render as squares. Ovals are extremely CPU intensive for large effects*/
 	protected final boolean isOval;
     /** Counts the number of update calls since the last creation of new particles. */
@@ -62,12 +64,12 @@ public class Effect {
 	
 	/**
 	 * Renders the snow to the screen.
-	 * @param g Graphics object with which to draw.
+	 * @param renderer Graphics object with which to draw.
 	 */
-	public void render(final Graphics g) {
+	public void render(final ShapeRenderer renderer) {
         for(Particle p : particles) {
             if(p.isAlive()) {
-                p.render(g, isOval);
+                p.render(renderer, isOval);
             }
         }
 	}
@@ -119,13 +121,17 @@ public class Effect {
      * updates all of the particles in the Effect to work with the new dimensions.
      *
      * @param newScreenDimensions The new screen dimensions for the screen on which the particle is to be drawn.
+     * @param originX The new x-axis origin of the effect.
+     * @param originY The new y-axis origin of the effect.
      */
-    public void setScreenDimensions(final Dimension newScreenDimensions) {
+    public void setScreenDimensions(final Dimension newScreenDimensions, final float originX, final float originY) {
         // Update all particles to work properly with the new screen dimensions.
         for(Particle p : particles) {
             p.updateForNewScreenDimensions(screenDimensions, newScreenDimensions);
         }
 
         screenDimensions = newScreenDimensions;
+        this.originX = originX;
+        this.originY = originY;
     }
 }
