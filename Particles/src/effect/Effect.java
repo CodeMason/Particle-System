@@ -1,6 +1,7 @@
 package effect;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import particle.Particle;
 
@@ -22,6 +23,7 @@ public class Effect {
 	protected float originY;
 	/** Whether or not to render the particles as ovals. If not then render as squares. Ovals are extremely CPU intensive for large effects*/
 	protected final boolean isOval;
+    protected Texture particleTexture;
     /** Counts the number of update calls since the last creation of new particles. */
 	protected byte counter = 0;
 
