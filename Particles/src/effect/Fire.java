@@ -81,6 +81,7 @@ public class Fire extends Effect {
 
     @Override
     public void setScreenDimensions(final Dimension newScreenDimensions, final float originX, final float originY) {
+        // todo Implement resizing code properly.
         super.clearParticles();
         screenDimensions = newScreenDimensions;
         this.originX = originX;
