@@ -181,4 +181,8 @@ public class Particle {
     public void setGravityY(final float gravityY) {
         this.gravityY = gravityY;
     }
+
+    public void setCurrentLife(final float currentLife) {
+        this.currentLife = currentLife;
+    }
 }
