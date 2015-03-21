@@ -116,6 +116,13 @@ public class Effect {
         particles[index].setAllData(xCurrent, yCurrent, dx, dy, gravityX, gravityY, size, life, color);
     }
 
+    /** Deletes all particles held by the effect. */
+    public void clearParticles() {
+        for(short i=0;i<particles.length;i++) {
+            particles[i].setCurrentLife(0);
+        }
+    }
+
     /**
      * Sets the screen dimensions, for the Effect, to the specified dimensions, and then
      * updates all of the particles in the Effect to work with the new dimensions.
