@@ -72,7 +72,7 @@ public class Fire extends Effect {
             float dx = (float)Math.random() / 4f;
             float dy = (float)Math.random() * 1f;
             float gravityX = 0.0f;
-            float gravityY = 0.0015f * (randBool ? 1f : -1f);
+            float gravityY = 0.0015f * (randBool ? 1f : 0.75f);
             byte size = (byte)(4 + (Math.random() * 10));
 
             super.addParticle(indexOfOpenPosition, xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color);
