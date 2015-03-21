@@ -12,7 +12,7 @@ import java.awt.*;
  */
 public class ParticleHoleEffect extends Effect {
     private final ParticleHole[] particleHoles = {
-        new ParticleHole(250f, 250f, 0.000175f, -0.000075f),
+        new ParticleHole(250f, 250f, 0.000175f, 0.000075f),
         new ParticleHole(750f, 750f, -0.000075f, 0.000175f)
     };
 
@@ -21,9 +21,9 @@ public class ParticleHoleEffect extends Effect {
 
 
     /** An arbitrary number which controls how fast the rgb values are changed. */
-    private static final float COLOR_CHANGE_CONSTANT = 0.250f;
+    private static final float COLOR_CHANGE_CONSTANT = 0.00025f;
     /** An rgb value representing the color to apply to all new particles. */
-    private float red = 255, green = 0, blue = 0;
+    private float red = 1.0f, green = 0.0f, blue = 0.0f;
     /** A boolean value representing which color will be used next. */
     private boolean changingToRed = false, changingToGreen = true, changingToBlue = false;
 
@@ -70,14 +70,7 @@ public class ParticleHoleEffect extends Effect {
         // update() method of the Effect class because it's divisible
         // by 2.
         if(counter == 10) {
-            for(short i=0;i<TOTAL_PARTICLES/100;i++) { newParticle(); }
-            counter = 0;
-        } else {
-            counter++;
-        }
-
-        if(counter == 10) {
-            for(short i=0;i<TOTAL_PARTICLES/100;i++) { newParticle(); }
+            for(short i=0;i<TOTAL_PARTICLES/10;i++) { newParticle(); }
             counter = 0;
         } else {
             counter++;
@@ -137,7 +130,7 @@ public class ParticleHoleEffect extends Effect {
             float dy = (float)Math.random() * -2.5f;
             byte size = (byte)(Math.random() * 16 + 1);
             short life = (short)(Math.random() * 800 + 1);
-            Color color = new Color((int)red, (int)green, (int)blue, 100);
+            Color color = new Color(red, green, blue, 1.0f);
 
             super.addParticle(indexOfOpenPosition, xCoord, yCoord, dx, dy, size, life, color);
         }
