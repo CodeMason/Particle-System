@@ -78,4 +78,12 @@ public class Fire extends Effect {
             super.addParticle(indexOfOpenPosition, xCoord, yCoord, dx, dy, gravityX, gravityY, size, life, color);
         }
 	}
+
+    @Override
+    public void setScreenDimensions(final Dimension newScreenDimensions, final float originX, final float originY) {
+        super.clearParticles();
+        screenDimensions = newScreenDimensions;
+        this.originX = originX;
+        this.originY = originY;
+    }
 }
