@@ -2,8 +2,10 @@
   <library name="Utilities">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/libs/Utilities.jar!/" />
+      <root url="file://$PROJECT_DIR$/libs/libGDX" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/libs/libGDX" recursive="false" />
   </library>
 </component>
