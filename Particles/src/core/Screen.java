@@ -68,6 +68,8 @@ public class Screen implements ApplicationListener {
             effect = new Snow(screenDimensions, 0, screenDimensions.height);
         } else if(Gdx.input.isKeyPressed(Input.Keys.F5)) {
             effect = new SplitWave(screenDimensions, 0, screenDimensions.height);
+        } else if(Gdx.input.isKeyPressed(Input.Keys.F6)) {
+            effect = new Stars(screenDimensions, 0, screenDimensions.height);
         }
 
         // Rendering
